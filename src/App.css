@@ -38,7 +38,6 @@ html,
 body {
   width: 100%;
   font-family: var(--font-secondary);
-  font-size: var(--font-size-base);
   background-color: var(--color-background);
   color: var(--color-text);
   scroll-behavior: smooth;

@@ -1,0 +1,14 @@
+.header {
+  padding-block: 1rem;
+  background-color: var(--color-shade50);
+  box-shadow: 0 3px 2px -2px rgba(160, 159, 159, 0.274);
+  font-size: var(--font-size-base);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__nav {
+    display: flex;
+    gap: 1rem;
+  }
+}
