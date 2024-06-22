@@ -1,0 +1,55 @@
+@use '../../styles/colors.scss'as colors;
+@use '../../styles/fonts.scss'as fonts;
+
+.card {
+  position: relative;
+  border: 1px solid colors.$color-text;
+  border-radius: 15px;
+
+  &__slider {
+    min-height: 150px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  &__name {
+    padding: 0.5rem;
+  }
+
+  &__content {
+    display: flex;
+    align-items: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-inline: 0.5rem;
+    padding-bottom: 1rem;
+
+    &--button {
+      background-color: transparent;
+      border: 0;
+      padding: 0.25rem;
+      color: colors.$color-accent;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+
+      transition: all 200ms ease;
+
+      &:hover {
+        color: colors.$color-text;
+      }
+    }
+  }
+
+  &__type {
+    position: absolute;
+    top: 2rem;
+    right: 0;
+    padding: 0.15rem;
+    background-color: colors.$color-secondary-container;
+    color: colors.$color-shade50;
+  }
+}
