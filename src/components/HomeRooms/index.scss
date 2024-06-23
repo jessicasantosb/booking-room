@@ -1,5 +1,4 @@
 @use '../../styles/colors.scss'as colors;
-@use '../../styles/fonts.scss'as fonts;
 
 .card {
   position: relative;
@@ -13,22 +12,22 @@
   }
 
   &__name {
-    padding: 0.5rem;
+    padding-inline: 0.5rem;
+    padding-block: 1rem;
   }
 
   &__content {
     display: flex;
     align-items: flex-end;
-    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    gap: 1rem;
     padding-inline: 0.5rem;
     padding-bottom: 1rem;
 
     &--button {
       background-color: transparent;
       border: 0;
-      padding: 0.25rem;
       color: colors.$color-accent;
       cursor: pointer;
 

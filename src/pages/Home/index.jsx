@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import HomeRooms from '../../components/HomeRooms';
-import './index.scss'
+import './index.scss';
 
 export default function Home() {
   const [rooms, setRooms] = useState([]);
@@ -24,16 +24,8 @@ export default function Home() {
       <h1>home</h1>
       <h2 className='home__subtitle'>Check out these fantastic stays</h2>
       <div className='home__rooms'>
-        {rooms.map(({ __id, imageurls, name, type, maxcount }) => {
-          return (
-            <HomeRooms
-              key={__id}
-              images={imageurls}
-              name={name}
-              type={type}
-              maxcount={maxcount}
-            />
-          );
+        {rooms.map((room) => {
+          return <HomeRooms key={room._id} room={room} />;
         })}
       </div>
     </section>
