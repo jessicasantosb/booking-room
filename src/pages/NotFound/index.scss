@@ -1,0 +1,29 @@
+@use '../../styles/colors.scss'as colors;
+
+.notfound {
+  height: 90dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &__title {
+    font-size: 5rem;
+    color: colors.$color-secondary;
+  }
+
+  &__link {
+    margin-block: 3rem;
+    padding: 0.5rem;
+    background-color: colors.$color-secondary;
+    color: colors.$color-shade50;
+    border-radius: 6px;
+    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.308);
+
+    &:hover {
+      transform: scale(0.95);
+      box-shadow: none;
+      opacity: 0.8;
+    }
+  }
+}

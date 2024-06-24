@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import BookingScreen from './pages/BookingScreen';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import NotFound from './pages/NotFound';
 import Register from './pages/Register';
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
       {
         path: '/login',
