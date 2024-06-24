@@ -2,12 +2,15 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
+import Error from '../../components/interfaces/Error';
 import Loading from '../../components/interfaces/Loading';
 import './index.scss';
 
 export default function BookingScreen() {
   const [room, setRoom] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
   const { roomid } = useParams();
 
   useEffect(() => {
@@ -20,7 +23,7 @@ export default function BookingScreen() {
         setRoom(response.data);
         setIsLoading(false);
       } catch (error) {
-        console.error(error);
+        setError(error.message);
         setIsLoading(false);
       }
     };
@@ -29,6 +32,7 @@ export default function BookingScreen() {
   }, [roomid]);
 
   if (isLoading) return <Loading />;
+  if (error) return <Error />;
 
   return (
     <section>

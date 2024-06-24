@@ -1,12 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import HomeRooms from '../../components/HomeRooms';
+import Error from '../../components/interfaces/Error';
 import Loading from '../../components/interfaces/Loading';
 import './index.scss';
 
 export default function Home() {
   const [rooms, setRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const getAllRooms = async () => {
@@ -16,7 +18,7 @@ export default function Home() {
         setRooms(response.data);
         setIsLoading(false);
       } catch (error) {
-        console.error(error);
+        setError(error.message);
         setIsLoading(false);
       }
     };
@@ -25,6 +27,7 @@ export default function Home() {
   }, []);
 
   if (isLoading) return <Loading />;
+  if (error) return <Error error={error} />;
 
   return (
     <section className='home container'>

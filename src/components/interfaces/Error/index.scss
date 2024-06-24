@@ -1,0 +1,15 @@
+@use '../../../styles/colors.scss'as colors;
+
+.error {
+  height: 90dvh;
+  display: flex;
+  align-items: center;
+
+  &__content {
+    width: 100%;
+    padding: 0.25rem;
+    text-align: center;
+    background-color: colors.$color-shade50;
+    color: colors.$color-critical;
+  }
+}
