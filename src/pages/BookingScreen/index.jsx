@@ -1,26 +1,34 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+
+import Loading from '../../components/interfaces/Loading';
 import './index.scss';
 
 export default function BookingScreen() {
   const [room, setRoom] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { roomid } = useParams();
 
   useEffect(() => {
     const getRoom = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.post('/api/rooms/getroombyid', {
           roomid: roomid,
         });
         setRoom(response.data);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
+        setIsLoading(false);
       }
     };
 
     getRoom();
   }, [roomid]);
+
+  if (isLoading) return <Loading />;
 
   return (
     <section>
@@ -32,8 +40,7 @@ export default function BookingScreen() {
         <div>
           <h2 className='title'>{room.name}</h2>
           <div className='booking__images'>
-            
-            <img src={room.imageurls[0]} alt={room.name} />;
+            <img src={room.imageurls && room.imageurls[0]} alt={room.name} />;
           </div>
         </div>
 

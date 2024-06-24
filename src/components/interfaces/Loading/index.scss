@@ -1,0 +1,14 @@
+@use '../../../styles/colors.scss'as colors;
+
+.loading {
+  height: 90dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__title {
+    color: colors.$color-secondary;
+  }
+}
