@@ -46,6 +46,10 @@ img {
   max-width: 100%;
 }
 
+span {
+  font-style: italic;
+}
+
 .container {
   max-width: 1366px;
   padding-inline: 1rem;
@@ -56,6 +60,6 @@ img {
   font-family: fonts.$font-primary;
 }
 
-.italic {
-  font-style: italic;
+.button {
+  cursor: pointer;
 }

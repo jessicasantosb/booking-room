@@ -4,43 +4,12 @@
   position: relative;
   border: 1px solid colors.$color-text;
   border-radius: 15px;
+  padding: 1rem;
 
   &__slider {
     min-height: 150px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-  }
-
-  &__name {
-    padding-inline: 0.5rem;
-    padding-block: 1rem;
-  }
-
-  &__content {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding-inline: 0.5rem;
-    padding-bottom: 1rem;
-
-    &--button {
-      background-color: transparent;
-      border: 0;
-      color: colors.$color-accent;
-      cursor: pointer;
-
-      display: flex;
-      align-items: center;
-      gap: 0.15rem;
-
-      transition: all 200ms ease;
-
-      &:hover {
-        color: colors.$color-text;
-      }
-    }
   }
 
   &__type {
@@ -50,5 +19,43 @@
     padding: 0.15rem;
     background-color: colors.$color-secondary-container;
     color: colors.$color-shade50;
+  }
+
+  &__name {
+    padding-block: 1rem;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-size: 1rem;
+
+    &--link {
+      padding: 0.25rem;
+      color: colors.$color-shade50;
+      background-color: colors.$color-secondary;
+      border-radius: 4px;
+
+      &:hover {
+        opacity: 0.8;
+        transform: scale(0.95);
+      }
+    }
+
+    &--button {
+      background-color: transparent;
+      border: 0;
+      color: colors.$color-secondary;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+      transition: all 200ms ease;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }

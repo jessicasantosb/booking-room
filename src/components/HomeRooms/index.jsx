@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { IoInformationCircleOutline } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 import HomeModal from '../HomeModal';
 import './index.scss';
 export default function HomeRooms({ room }) {
@@ -28,21 +29,28 @@ export default function HomeRooms({ room }) {
           })}
         </div>
         <p className='card__type'>{room.type}</p>
-        <div>
-          <h3 className='card__name'>{room.name}</h3>
-          <div className='card__content'>
-            <div>
-              <p className='card__content--maxcount'>
-                Max count: <span className='italic'>{room.maxcount}</span>
-              </p>
-              <p className='card__content--phonenumber'>
-                Phone number: <span className='italic'>{room.phonenumber}</span>
-              </p>
-            </div>
-            <button className='card__content--button' onClick={handleModal}>
-              view details <IoInformationCircleOutline size={18} />
-            </button>
-          </div>
+        <h3 className='card__name'>{room.name}</h3>
+
+        <p className='card__maxcount'>
+          Max count: <span>{room.maxcount}</span>
+        </p>
+        <p className='card__phonenumber'>
+          Phone number: <span>{room.phonenumber}</span>
+        </p>
+
+        <div className='card__links'>
+          <Link
+            to={`booking/${room._id}`}
+            className='button card__links--link'
+          >
+            Book room
+          </Link>
+          <button
+            className='button card__links--button'
+            onClick={handleModal}
+          >
+            View details <IoInformationCircleOutline size={18} />
+          </button>
         </div>
       </div>
 

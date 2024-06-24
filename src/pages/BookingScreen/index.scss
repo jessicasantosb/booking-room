@@ -1,0 +1,70 @@
+@use '../../styles/colors.scss'as colors;
+
+.booking {
+  min-height: 80dvh;
+  margin: 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.308);
+
+  @media screen and (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    padding-bottom: 2rem;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      right: 0;
+      width: 90%;
+      height: 1px;
+      background-color: rgba(0, 0, 0, 0.349);
+    }
+  }
+
+  &__subtitle {
+    padding-block: 2rem;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 250px;
+      right: 0;
+      width: 90%;
+      height: 1px;
+      background-color: rgba(0, 0, 0, 0.349);
+    }
+  }
+
+  &__button {
+    padding: 0.5rem;
+    margin-block: 2rem;
+    width: 100px;
+    text-transform: uppercase;
+    background-color: colors.$color-primary;
+    color: colors.$color-shade50;
+    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.308);
+
+    &:hover {
+      box-shadow: none;
+      transform: scale(0.98);
+      opacity: 0.9;
+    }
+  }
+
+  &__images {
+    background-color: lightcoral;
+  }
+}
