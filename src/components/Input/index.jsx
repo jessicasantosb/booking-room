@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import './index.scss';
 
-export default function Input({ type, placeholder, name, value, onChange, onBlur, error }) {
+export default function Input({ type, placeholder, name, value, onChange, error }) {
   const [isPassword, setIsPassword] = useState(false);
   const [slashEye, setSlashEye] = useState(true);
   const [inputType, setInputType] = useState(type);
@@ -26,7 +26,6 @@ export default function Input({ type, placeholder, name, value, onChange, onBlur
           name={name}
           value={value}
           onChange={onChange}
-          onBlur={onBlur}
         />
         {isPassword && (
           <button
