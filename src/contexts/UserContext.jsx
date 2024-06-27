@@ -1,13 +1,19 @@
 import axios from 'axios';
-import { createContext, useCallback, useState } from 'react';
+import { createContext, useCallback, useEffect, useState } from 'react';
 
 export const UserContext = createContext();
 
 export function UserStorage({ children }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [isLogged, setIsLogged] = useState(null);
-  const [userData, setUserData] = useState(null);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (user) {
+      setUser(user);
+    }
+  }, []);
 
   const userRegister = async (user) => {
     try {
@@ -15,7 +21,7 @@ export function UserStorage({ children }) {
       const response = await axios.post('/api/users/register', user);
 
       if (response.data) {
-        window.location.href = '/login';
+        location.href = '/login';
         setLoading(false);
       }
     } catch (error) {
@@ -29,12 +35,9 @@ export function UserStorage({ children }) {
       setLoading(true);
       const response = await axios.post('/api/users/login', user);
       if (response.data) {
-        location.href = '/';
         setLoading(false);
-        localStorage.setItem(
-          'currentUser',
-          JSON.stringify(response.data)
-        );
+        localStorage.setItem('currentUser', JSON.stringify(response.data));
+        location.href = '/';
       }
     } catch (error) {
       setError(true);
@@ -44,10 +47,9 @@ export function UserStorage({ children }) {
   };
 
   const userLogout = useCallback(async () => {
-    setUserData(null);
+    setUser(null);
     setError(null);
     setLoading(false);
-    setIsLogged(false);
     localStorage.removeItem('currentUser');
     location.href = '/login';
   }, []);
@@ -60,8 +62,7 @@ export function UserStorage({ children }) {
         userLogout,
         error,
         loading,
-        isLogged,
-        userData,
+        user,
       }}
     >
       {children}
