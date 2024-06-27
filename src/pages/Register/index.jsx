@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import BeatLoader from 'react-spinners/BeatLoader';
 import Input from '../../components/Input';
 import TermsFooter from '../../components/TermsFooter';
+import Error from '../../components/interfaces/Error';
 import './index.scss';
 
 export default function Register() {
@@ -10,6 +12,8 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -18,12 +22,17 @@ export default function Register() {
 
     if (password === confirmPassword) {
       const user = { name, email, password, confirmPassword };
-      
       try {
-        await axios.post('/api/users/register', user).data;
-        navigate('/login', { replace: true });
+        setLoading(true);
+        const response = await axios.post('/api/users/register', user);
+
+        if (response.data) {
+          navigate('/login', { replace: true });
+          setLoading(false);
+        }
       } catch (error) {
-        console.error(error);
+        setError(true);
+        setLoading(false);
       }
     } else {
       alert('Password not matched');
@@ -32,6 +41,7 @@ export default function Register() {
 
   return (
     <section className='register container'>
+      {error && <Error error='Register failed. Please try again later.' />}
       <main className='register__content'>
         <h1 className='register__title'>Create an account</h1>
 
@@ -65,8 +75,19 @@ export default function Register() {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
-          <button className='register__button' type='submit'>
-            register
+          <button
+            className={`button ${loading && 'button--disable'}`}
+            type='submit'
+          >
+            register{' '}
+            {loading && (
+              <BeatLoader
+                color='#191e3b'
+                size={2}
+                aria-label='Loading Spinner'
+                data-testid='loader'
+              />
+            )}
           </button>
         </form>
 

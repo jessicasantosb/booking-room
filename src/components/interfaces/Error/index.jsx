@@ -1,11 +1,8 @@
 import './index.scss'
 export default function Error({error}) {
   return (
-    <section className='error container'>
-      <div className='error__content'>
-        <p>Something went wrong. Please try again later</p>
+    <div className='error'>
         <p>{error}</p>
-      </div>
-    </section>
+    </div>
   )
 }

@@ -8,7 +8,7 @@ import './index.scss';
 export default function Home() {
   const [rooms, setRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const getAllRooms = async () => {
@@ -18,7 +18,7 @@ export default function Home() {
         setRooms(response.data);
         setIsLoading(false);
       } catch (error) {
-        setError(error.message);
+        setError(true);
         setIsLoading(false);
       }
     };
@@ -27,17 +27,20 @@ export default function Home() {
   }, []);
 
   if (isLoading) return <Loading />;
-  if (error) return <Error error={error} />;
 
   return (
     <section className='home container'>
       <h1>home</h1>
       <h2 className='home__subtitle'>Check out these fantastic stays</h2>
-      <div className='home__rooms'>
-        {rooms.map((room) => {
-          return <HomeRooms key={room._id} room={room} />;
-        })}
-      </div>
+      {error ? (
+          <Error error='Something went wrong. Please try again later' />
+      ) : (
+        <div className='home__rooms'>
+          {rooms.map((room) => {
+            return <HomeRooms key={room._id} room={room} />;
+          })}
+        </div>
+      )}
     </section>
   );
 }

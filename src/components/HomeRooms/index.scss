@@ -52,6 +52,7 @@
       align-items: center;
       gap: 0.15rem;
       transition: all 200ms ease;
+      cursor: pointer;
 
       &:hover {
         text-decoration: underline;
