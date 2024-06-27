@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.scss';
+import { UserStorage } from './contexts/UserContext';
 
 import Layout from './components/Layout';
 
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <UserStorage>
+      <RouterProvider router={router} />
+    </UserStorage>
+  );
 }
 
 export default App;

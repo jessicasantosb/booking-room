@@ -1,36 +1,24 @@
-import axios from 'axios';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
 import Input from '../../components/Input';
 import TermsFooter from '../../components/TermsFooter';
 import Error from '../../components/interfaces/Error';
+import { UserContext } from '../../contexts/UserContext';
 import './index.scss';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
+  const { userLogin, error, loading } = useContext(UserContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     const user = { email, password };
 
-    try {
-      setLoading(true);
-      const response = await axios.post('/api/users/login', user);
-      if (response.data) {
-        navigate('/', { replace: true });
-        setLoading(false);
-      }
-    } catch (error) {
-      setError(true);
-      setLoading(false);
-    }
+    userLogin(user);
   };
 
   return (

@@ -1,10 +1,10 @@
-import axios from 'axios';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
 import Input from '../../components/Input';
 import TermsFooter from '../../components/TermsFooter';
 import Error from '../../components/interfaces/Error';
+import { UserContext } from '../../contexts/UserContext';
 import './index.scss';
 
 export default function Register() {
@@ -12,28 +12,15 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
+  const { userRegister, error, loading } = useContext(UserContext);
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
     if (password === confirmPassword) {
       const user = { name, email, password, confirmPassword };
-      try {
-        setLoading(true);
-        const response = await axios.post('/api/users/register', user);
-
-        if (response.data) {
-          navigate('/login', { replace: true });
-          setLoading(false);
-        }
-      } catch (error) {
-        setError(true);
-        setLoading(false);
-      }
+      userRegister(user);
     } else {
       alert('Password not matched');
     }
