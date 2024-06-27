@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { createContext, useState } from 'react';
+import { createContext, useCallback, useState } from 'react';
 
 export const UserContext = createContext();
 
 export function UserStorage({ children }) {
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isLogged, setIsLogged] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   const userRegister = async (user) => {
     try {
@@ -20,17 +22,19 @@ export function UserStorage({ children }) {
       setError(true);
       setLoading(false);
     }
-  }
+  };
 
   const userLogin = async (user) => {
     try {
-      console.log(user);
       setLoading(true);
       const response = await axios.post('/api/users/login', user);
       if (response.data) {
-        window.location.href = '/';
+        location.href = '/';
         setLoading(false);
-        window.localStorage.setItem('token', response.data);
+        localStorage.setItem(
+          'currentUser',
+          JSON.stringify(response.data)
+        );
       }
     } catch (error) {
       setError(true);
@@ -39,8 +43,27 @@ export function UserStorage({ children }) {
     }
   };
 
+  const userLogout = useCallback(async () => {
+    setUserData(null);
+    setError(null);
+    setLoading(false);
+    setIsLogged(false);
+    localStorage.removeItem('currentUser');
+    location.href = '/login';
+  }, []);
+
   return (
-    <UserContext.Provider value={{ userLogin, userRegister, error, loading }}>
+    <UserContext.Provider
+      value={{
+        userLogin,
+        userRegister,
+        userLogout,
+        error,
+        loading,
+        isLogged,
+        userData,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
