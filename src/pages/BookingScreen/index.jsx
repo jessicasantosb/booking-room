@@ -1,37 +1,21 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import Error from '../../components/interfaces/Error';
 import Loading from '../../components/interfaces/Loading';
+import { RoomContext } from '../../contexts/RoomContext';
 import './index.scss';
 
 export default function BookingScreen() {
-  const [room, setRoom] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const { getRoom, error, loading, room } = useContext(RoomContext);
 
   const { roomid } = useParams();
 
   useEffect(() => {
-    const getRoom = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.post('/api/rooms/getroombyid', {
-          roomid: roomid,
-        });
-        setRoom(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setError(true);
-        setIsLoading(false);
-      }
-    };
+    getRoom(roomid);
+  }, []);
 
-    getRoom();
-  }, [roomid]);
-
-  if (isLoading) return <Loading />;
+  if (loading) return <Loading />;
 
   return (
     <section className='container'>
