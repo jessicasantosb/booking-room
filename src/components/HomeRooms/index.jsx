@@ -3,7 +3,7 @@ import { IoInformationCircleOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import HomeModal from '../HomeModal';
 import './index.scss';
-export default function HomeRooms({ room }) {
+export default function HomeRooms({ room, fromDate, toDate }) {
   const [modal, setModal] = useState(false);
 
   const handleModal = () => {
@@ -40,15 +40,12 @@ export default function HomeRooms({ room }) {
 
         <div className='card__links'>
           <Link
-            to={`booking/${room._id}`}
+            to={`booking/${room._id}/${fromDate}/${toDate}`}
             className='card__links--link'
           >
             Book room
           </Link>
-          <button
-            className='card__links--button'
-            onClick={handleModal}
-          >
+          <button className='card__links--button' onClick={handleModal}>
             View details <IoInformationCircleOutline size={18} />
           </button>
         </div>
