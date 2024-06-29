@@ -6,7 +6,7 @@ const { RangePicker } = DatePicker;
 export default function HomeHeader({ filterByDate }) {
   return (
     <div className='homeheader'>
-      <RangePicker format='DD-MM-YYYY' onChange={filterByDate} />
+      <RangePicker format='MM-DD-YYYY' onChange={filterByDate} />
     </div>
   );
 }

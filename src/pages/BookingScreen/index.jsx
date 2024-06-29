@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration';
 import { useContext, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
@@ -8,12 +7,14 @@ import Loading from '../../components/interfaces/Loading';
 import { RoomContext } from '../../contexts/RoomContext';
 import './index.scss';
 
-dayjs.extend(duration);
-
 export default function BookingScreen() {
   const { getRoom, error, loading, room } = useContext(RoomContext);
 
   const { roomid, fromDate, toDate } = useParams();
+
+  const from = dayjs(fromDate);
+  const to = dayjs(toDate);
+  const totalDays = to.diff(from, 'day');
 
   useEffect(() => {
     getRoom(roomid);
@@ -55,7 +56,7 @@ export default function BookingScreen() {
 
             <h3 className='title booking__subtitle'>Amount</h3>
             <p>
-              Total days: <span></span>
+              Total days: <span>{totalDays}</span>
             </p>
             <p>
               Rent per days: <span>{room.rentproperty}</span>

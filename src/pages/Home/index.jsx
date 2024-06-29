@@ -17,8 +17,8 @@ export default function Home() {
   const { getAllRooms, error, loading, rooms } = useContext(RoomContext);
 
   const filterByDate = (dates) => {
-    setFromDate(dayjs(dates[0]).format('DD-MM-YYYY'));
-    setToDate(dayjs(dates[1]).format('DD-MM-YYYY'));
+    setFromDate(dayjs(dates[0]).format('MM-DD-YYYY'));
+    setToDate(dayjs(dates[1]).format('MM-DD-YYYY'));
   };
 
   useEffect(() => {
