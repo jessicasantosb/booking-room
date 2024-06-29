@@ -5,16 +5,23 @@ import { Link, useParams } from 'react-router-dom';
 import Error from '../../components/interfaces/Error';
 import Loading from '../../components/interfaces/Loading';
 import { RoomContext } from '../../contexts/RoomContext';
+import { UserContext } from '../../contexts/UserContext';
 import './index.scss';
 
 export default function BookingScreen() {
-  const { getRoom, error, loading, room } = useContext(RoomContext);
-
+  const { getRoom, bookRoom, error, loading, room } = useContext(RoomContext);
+  const { user } = useContext(UserContext);
   const { roomid, fromDate, toDate } = useParams();
 
   const from = dayjs(fromDate);
   const to = dayjs(toDate);
   const totalDays = to.diff(from, 'day');
+
+  const totalAmount = totalDays * room.rentproperty;
+
+  const handleBooking = () => {
+    bookRoom(room, roomid, user._id, fromDate, toDate, totalDays, totalAmount);
+  };
 
   useEffect(() => {
     getRoom(roomid);
@@ -42,7 +49,7 @@ export default function BookingScreen() {
           <div className='booking__content'>
             <h2 className='title booking__title'>Booking Details</h2>
             <p>
-              Name: <span></span>
+              Name: <span>{user?.name}</span>
             </p>
             <p>
               From date: <span>{fromDate}</span>
@@ -62,10 +69,12 @@ export default function BookingScreen() {
               Rent per days: <span>{room.rentproperty}</span>
             </p>
             <p>
-              Total amount: <span></span>
+              Total amount: <span>{totalAmount}</span>
             </p>
 
-            <button className='booking__button'>Pay now</button>
+            <button className='booking__button' onClick={handleBooking}>
+              Pay now
+            </button>
           </div>
         </main>
       )}

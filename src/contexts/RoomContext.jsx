@@ -35,11 +35,41 @@ export function RoomProvider({ children }) {
     }
   };
 
+  const bookRoom = async (
+    room,
+    roomid,
+    userid,
+    fromDate,
+    toDate,
+    totalAmount,
+    totalDays
+  ) => {
+    const bookingData = {
+      room,
+      roomid,
+      userid,
+      fromDate,
+      toDate,
+      totalAmount,
+      totalDays,
+    };
+
+    try {
+      setLoading(true);
+      await axios.post('/api/books/bookroom', bookingData);
+      setLoading(false);
+    } catch (error) {
+      setError(true);
+      setLoading(false);
+    }
+  };
+
   return (
     <RoomContext.Provider
       value={{
         getAllRooms,
         getRoom,
+        bookRoom,
         error,
         loading,
         rooms,

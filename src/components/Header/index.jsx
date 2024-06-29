@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { FaRegUserCircle } from 'react-icons/fa';
 import { IoIosLogOut, IoMdArrowDropdown } from 'react-icons/io';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { Link, NavLink } from 'react-router-dom';
@@ -25,6 +26,7 @@ export default function Header() {
       <button className='header__menu' onClick={() => setDropdown(!dropdown)}>
         {user ? (
           <>
+            <FaRegUserCircle />
             {user.name}
             <IoMdArrowDropdown />
           </>
