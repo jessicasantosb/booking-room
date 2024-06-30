@@ -20,7 +20,7 @@ export default function BookingScreen() {
   const totalAmount = totalDays * room.rentproperty;
 
   const handleBooking = () => {
-    bookRoom(room, roomid, user._id, fromDate, toDate, totalDays, totalAmount);
+    bookRoom(room, roomid, user._id, fromDate, toDate, totalAmount, totalDays);
   };
 
   useEffect(() => {

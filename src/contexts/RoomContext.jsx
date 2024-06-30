@@ -8,12 +8,14 @@ export function RoomProvider({ children }) {
   const [room, setRoom] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [duplicateRooms, setDuplicateRooms] = useState([]);
 
   const getAllRooms = async () => {
     try {
       setLoading(true);
       const response = await axios.get('/api/rooms/getallrooms');
       setRooms(response.data);
+      setDuplicateRooms(response.data);
       setLoading(false);
     } catch (error) {
       setError(true);
@@ -73,7 +75,9 @@ export function RoomProvider({ children }) {
         error,
         loading,
         rooms,
+        setRooms,
         room,
+        duplicateRooms,
       }}
     >
       {children}

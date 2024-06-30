@@ -39,12 +39,14 @@ export default function HomeRooms({ room, fromDate, toDate }) {
         </p>
 
         <div className='card__links'>
-          <Link
-            to={`booking/${room._id}/${fromDate}/${toDate}`}
-            className='card__links--link'
-          >
-            Book room
-          </Link>
+          {fromDate && toDate && (
+            <Link
+              to={`booking/${room._id}/${fromDate}/${toDate}`}
+              className='card__links--link'
+            >
+              Book room
+            </Link>
+          )}
           <button className='card__links--button' onClick={handleModal}>
             View details <IoInformationCircleOutline size={18} />
           </button>
