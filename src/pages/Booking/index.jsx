@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
+import BookingModal from '../../components/BookingModal';
 import Error from '../../components/interfaces/Error';
 import Loading from '../../components/interfaces/Loading';
 import { RoomContext } from '../../contexts/RoomContext';
@@ -9,6 +10,7 @@ import { UserContext } from '../../contexts/UserContext';
 import './index.scss';
 
 export default function BookingScreen() {
+  const [modal, setModal] = useState(false);
   const { getRoom, bookRoom, error, loading, room } = useContext(RoomContext);
   const { user } = useContext(UserContext);
   const { roomid, fromDate, toDate } = useParams();
@@ -21,6 +23,14 @@ export default function BookingScreen() {
 
   const handleBooking = () => {
     bookRoom(room, roomid, user._id, fromDate, toDate, totalAmount, totalDays);
+  };
+
+  const handleModalOutsideClick = (event) => {
+    if (event.target === event.currentTarget) setModal(false);
+  };
+
+  const handleCloseModal = () => {
+    setModal(false);
   };
 
   useEffect(() => {
@@ -72,9 +82,20 @@ export default function BookingScreen() {
               Total amount: <span>{totalAmount}</span>
             </p>
 
-            <button className='booking__button' onClick={handleBooking}>
+            <button
+              className='booking__button'
+              onClick={() => setModal(!modal)}
+            >
               Pay now
             </button>
+
+            {modal && (
+              <BookingModal
+                handleBooking={handleBooking}
+                handleModalOutsideClick={handleModalOutsideClick}
+                handleCloseModal={handleCloseModal}
+              />
+            )}
           </div>
         </main>
       )}

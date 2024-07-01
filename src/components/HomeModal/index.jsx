@@ -8,13 +8,13 @@ export default function HomeModal({
   description,
 }) {
   return (
-    <div className='modal' onClick={handleModalOutsideClick}>
-      <div className='modal__content'>
+    <div className='modal homemodal' onClick={handleModalOutsideClick}>
+      <div className='modal__content modal__content--home'>
         <button className='modal__button' onClick={handleCloseModal}>
           <IoClose />
         </button>
         <h2 className='modal__title'>{name}</h2>
-        <div className='modal_images'>
+        <div className='homemodal_images'>
           {images.map((url, index) => {
             return <img key={index} src={url} alt={name} />;
           })}

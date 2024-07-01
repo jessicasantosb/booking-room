@@ -33,7 +33,7 @@ export default function Input({ type, placeholder, name, value, onChange, error 
             type='button'
             onClick={handleHideText}
           >
-            {slashEye ? <FaRegEyeSlash /> : <FaRegEye />}
+            {slashEye ? <FaRegEye /> : <FaRegEyeSlash />}
           </button>
         )}
       </div>

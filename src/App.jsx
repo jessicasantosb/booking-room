@@ -5,7 +5,7 @@ import { UserStorage } from './contexts/UserContext';
 
 import Layout from './components/Layout';
 
-import BookingScreen from './pages/BookingScreen';
+import Booking from './pages/Booking';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/booking/:roomid/:fromDate/:toDate',
-        element: <BookingScreen />,
+        element: <Booking />,
       },
     ],
   },

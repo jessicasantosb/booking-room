@@ -56,15 +56,48 @@ span {
   margin-inline: auto;
 }
 
+.modal {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.336);
+  z-index: 50;
+
+  &__button {
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+
+  &__content {
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+    margin: auto;
+    padding: 2rem;
+  }
+}
+
 .title {
   font-family: fonts.$font-primary;
 }
 
-.button {
+.button,
+.button--disable {
   padding: 0.5rem;
   margin-block: 2rem;
   width: 100%;
   text-transform: uppercase;
+}
+
+.button {
   background-color: colors.$color-secondary;
   color: colors.$color-shade50;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.308);
@@ -79,7 +112,7 @@ span {
   &--disable {
     background-color: rgba(128, 128, 128, 0.589);
     color: colors.$color-text;
-    cursor: progress;
+    cursor: default;
 
     &:hover {
       box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.308);
