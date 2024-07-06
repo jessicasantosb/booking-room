@@ -44,7 +44,8 @@ export function RoomProvider({ children }) {
     fromDate,
     toDate,
     totalAmount,
-    totalDays
+    totalDays,
+    token
   ) => {
     const bookingData = {
       room,
@@ -54,6 +55,7 @@ export function RoomProvider({ children }) {
       toDate,
       totalAmount,
       totalDays,
+      token
     };
 
     try {

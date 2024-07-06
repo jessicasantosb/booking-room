@@ -1,16 +1,15 @@
 import dayjs from 'dayjs';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import StripeCheckout from 'react-stripe-checkout';
 
-import BookingModal from '../../components/BookingModal';
 import Error from '../../components/interfaces/Error';
 import Loading from '../../components/interfaces/Loading';
 import { RoomContext } from '../../contexts/RoomContext';
 import { UserContext } from '../../contexts/UserContext';
 import './index.scss';
 
-export default function BookingScreen() {
-  const [modal, setModal] = useState(false);
+export default function Booking() {
   const { getRoom, bookRoom, error, loading, room } = useContext(RoomContext);
   const { user } = useContext(UserContext);
   const { roomid, fromDate, toDate } = useParams();
@@ -21,16 +20,21 @@ export default function BookingScreen() {
 
   const totalAmount = totalDays * room.rentproperty;
 
-  const handleBooking = () => {
-    bookRoom(room, roomid, user._id, fromDate, toDate, totalAmount, totalDays);
-  };
-
-  const handleModalOutsideClick = (event) => {
-    if (event.target === event.currentTarget) setModal(false);
-  };
-
-  const handleCloseModal = () => {
-    setModal(false);
+  const onToken = (token) => {
+    try {
+      bookRoom(
+        room,
+        roomid,
+        user._id,
+        fromDate,
+        toDate,
+        totalAmount,
+        totalDays,
+        token
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -42,11 +46,11 @@ export default function BookingScreen() {
   return (
     <section className='container'>
       <Link to={'/'} className='link'>
-        back to all rooms
+        voltar para todos os quartos
       </Link>
 
       {error ? (
-        <Error error='Something went wrong. Please try again later' />
+        <Error error='Algo deu errado. Tente novamente mais tarde, por favor!' />
       ) : (
         <main className='booking'>
           <div>
@@ -56,46 +60,58 @@ export default function BookingScreen() {
             </div>
           </div>
 
-          <div className='booking__content'>
-            <h2 className='title booking__title'>Booking Details</h2>
-            <p>
-              Name: <span>{user?.name}</span>
-            </p>
-            <p>
-              From date: <span>{fromDate}</span>
-            </p>
-            <p>
-              To date: <span>{toDate}</span>
-            </p>
-            <p>
-              Max count: <span>{room.maxcount}</span>
-            </p>
+          <div>
+            <div className='booking__content'>
+              <h2 className='title booking__title'>Detalhes da sua reserva</h2>
+              <p>
+                Nome: <span>{user?.name}</span>
+              </p>
+              <p>
+                Do dia: <span>{fromDate}</span>
+              </p>
+              <p>
+                Até o dia: <span>{toDate}</span>
+              </p>
+              <p>
+                Máximo de lugares: <span>{room.maxcount}</span>
+              </p>
 
-            <h3 className='title booking__subtitle'>Amount</h3>
-            <p>
-              Total days: <span>{totalDays}</span>
-            </p>
-            <p>
-              Rent per days: <span>{room.rentproperty}</span>
-            </p>
-            <p>
-              Total amount: <span>{totalAmount}</span>
-            </p>
+              <h3 className='title booking__subtitle'>Total</h3>
+              <p>
+                Total de dias: <span>{totalDays}</span>
+              </p>
+              <p>
+                Preço por dia:{' '}
+                <span>
+                  {room?.rentproperty?.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })}
+                </span>
+              </p>
+              <p>
+                Total:
+                <span>
+                  {totalAmount.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })}
+                </span>
+              </p>
+            </div>
 
-            <button
-              className='booking__button'
-              onClick={() => setModal(!modal)}
+            <StripeCheckout
+              name='BookingRoom.com'
+              description='alugue seu quarto'
+              image='https://www.vidhub.co/assets/logos/vidhub-icon-2e5c629f64ced5598a56387d4e3d0c7c.png'
+              panelLabel='Pague'
+              amount={totalAmount * 100}
+              currency='BRL'
+              token={onToken}
+              stripeKey='pk_test_51PXUh0GvxCcFMXvLZhpSDdfn26mYzjgRKPzqGN3vA0VEC3DO64je2XnwTOQS5vQz8VQuuvgxBBJ6ACH0euXmVear0049p8nuzJ'
             >
-              Pay now
-            </button>
-
-            {modal && (
-              <BookingModal
-                handleBooking={handleBooking}
-                handleModalOutsideClick={handleModalOutsideClick}
-                handleCloseModal={handleCloseModal}
-              />
-            )}
+              <button className='button'>Pagar agora</button>
+            </StripeCheckout>
           </div>
         </main>
       )}

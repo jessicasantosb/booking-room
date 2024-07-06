@@ -1,14 +1,21 @@
 @use '../../styles/colors.scss'as colors;
 
+.link {}
+
 .booking {
-  min-height: 80dvh;
-  margin: 4rem;
+  max-width: 800px;
+  margin-inline: auto;
+  padding: 2rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.308);
 
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 800px) {
     grid-template-columns: 1fr;
+  }
+
+  &__images {
+    background-color: lightcoral;
   }
 
   &__content {
@@ -46,25 +53,5 @@
       height: 1px;
       background-color: rgba(0, 0, 0, 0.349);
     }
-  }
-
-  &__button {
-    padding: 0.5rem;
-    margin-block: 2rem;
-    width: 100px;
-    text-transform: uppercase;
-    background-color: colors.$color-primary;
-    color: colors.$color-shade50;
-    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.308);
-
-    &:hover {
-      box-shadow: none;
-      transform: scale(0.98);
-      opacity: 0.9;
-    }
-  }
-
-  &__images {
-    background-color: lightcoral;
   }
 }
