@@ -34,6 +34,7 @@
     background-color: colors.$color-shade50;
     box-shadow: 0 3px 2px -2px rgba(160, 159, 159, 0.274);
     border-bottom-left-radius: 5px;
+    z-index: 50;
 
     &--hidden {
       display: none;

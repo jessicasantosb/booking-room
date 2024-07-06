@@ -16,11 +16,12 @@ dayjs.extend(isBetween);
 export default function Home() {
   const [fromDate, setFromDate] = useState();
   const [toDate, setToDate] = useState();
+  const [searchKey, setSearchKey] = useState('');
 
   const { getAllRooms, error, loading, rooms, setRooms, duplicateRooms } =
     useContext(RoomContext);
 
-  const filterByDate = (dates) => {
+  const handleFilterByDate = (dates) => {
     const firstDate = dayjs(dates[0]).format('MM-DD-YYYY');
     const secondDate = dayjs(dates[1]).format('MM-DD-YYYY');
 
@@ -59,6 +60,13 @@ export default function Home() {
     setRooms(tempRooms);
   };
 
+  const handleFilterByName = () => {
+    const temprooms = duplicateRooms.filter((room) =>
+      room.name.toLowerCase().includes(searchKey.toLowerCase())
+    );
+    setRooms(temprooms)
+  };
+
   useEffect(() => {
     getAllRooms();
   }, []);
@@ -67,11 +75,16 @@ export default function Home() {
 
   return (
     <section className='home container'>
-      <HomeHeader filterByDate={filterByDate} />
+      <HomeHeader
+        handleFilterByDate={handleFilterByDate}
+        handleFilterByName={handleFilterByName}
+        setSearchKey={setSearchKey}
+        searchKey={searchKey}
+      />
 
-      <h2 className='home__subtitle'>Check out these fantastic stays</h2>
+      <h2 className='home__subtitle'>Confira estes quartos incríveis</h2>
       {error ? (
-        <Error error='Something went wrong. Please try again later' />
+        <Error error='Algo deu errado. Por favor, tente novamente mais tarde.' />
       ) : (
         <div className='home__rooms'>
           {rooms.map((room) => {
