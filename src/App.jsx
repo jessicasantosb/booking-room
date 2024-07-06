@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Register from './pages/Register';
+import Bookings from './pages/Bookings';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         path: '/booking/:roomid/:fromDate/:toDate',
         element: <Booking />,
       },
+      {
+        path: '/bookings',
+        element: <Bookings />
+      }
     ],
   },
 ]);

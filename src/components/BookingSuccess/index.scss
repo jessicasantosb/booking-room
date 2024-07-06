@@ -1,0 +1,23 @@
+@use '../../styles/colors.scss'as colors;
+
+.bookingModal {
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: colors.$color-secondary;
+    color: colors.$color-shade50;
+
+    &--title {
+      color: colors.$color-positive;
+    }
+
+    &--button {
+      width: 80px;
+      margin-top: 2.5rem;
+      background-color: colors.$color-positive;
+    }
+  }
+}

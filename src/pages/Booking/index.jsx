@@ -1,8 +1,9 @@
 import dayjs from 'dayjs';
-import { useContext, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 
+import BookingSuccess from '../../components/BookingSuccess';
 import Error from '../../components/interfaces/Error';
 import Loading from '../../components/interfaces/Loading';
 import { RoomContext } from '../../contexts/RoomContext';
@@ -10,9 +11,11 @@ import { UserContext } from '../../contexts/UserContext';
 import './index.scss';
 
 export default function Booking() {
+  const [success, setSuccess] = useState(false);
   const { getRoom, bookRoom, error, loading, room } = useContext(RoomContext);
   const { user } = useContext(UserContext);
   const { roomid, fromDate, toDate } = useParams();
+  const navigate = useNavigate();
 
   const from = dayjs(fromDate);
   const to = dayjs(toDate);
@@ -21,20 +24,25 @@ export default function Booking() {
   const totalAmount = totalDays * room.rentproperty;
 
   const onToken = (token) => {
-    try {
-      bookRoom(
-        room,
-        roomid,
-        user._id,
-        fromDate,
-        toDate,
-        totalAmount,
-        totalDays,
-        token
-      );
-    } catch (error) {
-      console.log(error);
-    }
+    bookRoom(
+      room,
+      roomid,
+      user._id,
+      fromDate,
+      toDate,
+      totalAmount,
+      totalDays,
+      token
+    );
+    setSuccess(true);
+  };
+
+  const handleNavigate = () => {
+    navigate('/bookings');
+  };
+
+  const handleModalOutsideClick = (event) => {
+    if (event.target === event.currentTarget) navigate('/bookings');
   };
 
   useEffect(() => {
@@ -48,6 +56,13 @@ export default function Booking() {
       <Link to={'/'} className='link'>
         voltar para todos os quartos
       </Link>
+
+      {success && (
+        <BookingSuccess
+          handleModalOutsideClick={handleModalOutsideClick}
+          handleNavigate={handleNavigate}
+        />
+      )}
 
       {error ? (
         <Error error='Algo deu errado. Tente novamente mais tarde, por favor!' />
