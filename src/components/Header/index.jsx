@@ -43,11 +43,11 @@ export default function Header() {
         {user ? (
           <>
             <NavLink
-              to={'/bookings'}
+              to={'/profile'}
               className='header__link'
               style={handleLinkStyle}
             >
-              Bookings
+              Profile
             </NavLink>
             <button onClick={() => userLogout()} className='header__logout'>
               Logout <IoIosLogOut />
