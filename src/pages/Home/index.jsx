@@ -64,7 +64,18 @@ export default function Home() {
     const temprooms = duplicateRooms.filter((room) =>
       room.name.toLowerCase().includes(searchKey.toLowerCase())
     );
-    setRooms(temprooms)
+    setRooms(temprooms);
+  };
+
+  const handleFilterByType = (searchType) => {
+    if (searchType !== 'All') {
+      const temprooms = duplicateRooms.filter(
+        (room) => room.type.toLowerCase() === searchType.toLowerCase()
+      );
+      setRooms(temprooms);
+    } else {
+      setRooms(duplicateRooms);
+    }
   };
 
   useEffect(() => {
@@ -78,6 +89,7 @@ export default function Home() {
       <HomeHeader
         handleFilterByDate={handleFilterByDate}
         handleFilterByName={handleFilterByName}
+        handleFilterByType={handleFilterByType}
         setSearchKey={setSearchKey}
         searchKey={searchKey}
       />

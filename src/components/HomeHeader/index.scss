@@ -8,10 +8,10 @@
   flex-wrap: wrap;
   gap: 0.5rem;
 
-  &__searchDate,
-  &__searchName {
+  &__search {
     height: 40px;
     flex-grow: 1;
+    background-color: colors.$color-shade50;
     border: 2px solid colors.$color-secondary;
     border-radius: 5px;
     outline: none;
@@ -19,9 +19,9 @@
     &:focus {
       border-color: colors.$color-primary;
     }
-  }
 
-  &__searchName {
-    padding: 0.25rem;
+    &--name {
+      padding: 0.25rem;
+    }
   }
 }
