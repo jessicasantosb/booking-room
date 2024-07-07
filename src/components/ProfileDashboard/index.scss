@@ -1,0 +1,14 @@
+@use '../../styles/colors.scss'as colors;
+
+.dashboard {
+  margin-top: 2rem;
+  padding-block: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 1px solid colors.$color-text;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  text-transform: uppercase;
+}
