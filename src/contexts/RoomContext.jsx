@@ -5,10 +5,11 @@ export const RoomContext = createContext();
 
 export function RoomProvider({ children }) {
   const [rooms, setRooms] = useState([]);
+  const [duplicateRooms, setDuplicateRooms] = useState([]);
   const [room, setRoom] = useState([]);
+  const [userBookings, setUserBookings] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [duplicateRooms, setDuplicateRooms] = useState([]);
 
   const getAllRooms = async () => {
     try {
@@ -55,7 +56,7 @@ export function RoomProvider({ children }) {
       toDate,
       totalAmount,
       totalDays,
-      token
+      token,
     };
 
     try {
@@ -68,11 +69,26 @@ export function RoomProvider({ children }) {
     }
   };
 
+  const getUserBookings = async (userid) => {
+    try {
+      setLoading(true);
+      const response = await axios.post('/api/books/getbookingsbyuserid', {
+        userid: userid,
+      });
+      setUserBookings(response.data);
+      setLoading(false);
+    } catch (error) {
+      setError(true);
+      setLoading(false);
+    }
+  };
+
   return (
     <RoomContext.Provider
       value={{
         getAllRooms,
         getRoom,
+        getUserBookings,
         bookRoom,
         error,
         loading,
@@ -80,6 +96,7 @@ export function RoomProvider({ children }) {
         setRooms,
         room,
         duplicateRooms,
+        userBookings,
       }}
     >
       {children}

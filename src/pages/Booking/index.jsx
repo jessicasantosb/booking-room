@@ -38,11 +38,11 @@ export default function Booking() {
   };
 
   const handleNavigate = () => {
-    navigate('/bookings');
+    navigate('/profile/bookings');
   };
 
   const handleModalOutsideClick = (event) => {
-    if (event.target === event.currentTarget) navigate('/bookings');
+    if (event.target === event.currentTarget) navigate('/profile/bookings');
   };
 
   useEffect(() => {
