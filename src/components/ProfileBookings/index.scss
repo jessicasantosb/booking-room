@@ -1,0 +1,49 @@
+@use '../../styles/colors.scss'as colors;
+
+.profileCard {
+  width: 100%;
+  max-width: 600px;
+  margin-inline: auto;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid colors.$color-primary;
+
+  &__div {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    line-height: 2rem;
+
+    @media screen and (max-width: 600px) {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  &__status {
+    margin-block: 1rem;
+  }
+
+  &__tag {
+    margin-top: 1rem;
+    padding: 0.25rem;
+    border-radius: 5px;
+    color: colors.$color-shade50;
+
+    &--booked {
+      background-color: colors.$color-positive;
+    }
+
+    &--canceled {
+      background-color: colors.$color-critical;
+    }
+  }
+
+  &__button {
+    max-width: 170px;
+    float: right;
+    margin-bottom: 0.5rem;
+    background-color: colors.$color-secondary;
+    color: colors.$color-shade50;
+  }
+}

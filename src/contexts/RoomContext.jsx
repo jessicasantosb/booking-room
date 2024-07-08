@@ -83,6 +83,21 @@ export function RoomProvider({ children }) {
     }
   };
 
+  const cancelBooking = async (bookingid, roomid) => {
+    try {
+      setLoading(true);
+      await axios.post('/api/books/cancelbooking', {
+        bookingid,
+        roomid,
+      });
+      setLoading(false);
+      location.reload()
+    } catch (error) {
+      setError(true);
+      setLoading(false);
+    }
+  };
+
   return (
     <RoomContext.Provider
       value={{
@@ -90,6 +105,7 @@ export function RoomProvider({ children }) {
         getRoom,
         getUserBookings,
         bookRoom,
+        cancelBooking,
         error,
         loading,
         rooms,

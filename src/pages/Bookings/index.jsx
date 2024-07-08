@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import ProfileRooms from '../../components/ProfileRooms';
+import ProfileBookings from '../../components/ProfileBookings';
 import Error from '../../components/interfaces/Error';
 import Loading from '../../components/interfaces/Loading';
 import { RoomContext } from '../../contexts/RoomContext';
@@ -7,7 +7,7 @@ import { UserContext } from '../../contexts/UserContext';
 import './index.scss';
 
 export default function Bookings() {
-  const { getUserBookings, userBookings, loading, error } =
+  const { getUserBookings, cancelBooking, userBookings, loading, error } =
     useContext(RoomContext);
   const { user } = useContext(UserContext);
 
@@ -33,20 +33,25 @@ export default function Bookings() {
               _id,
               createdAt,
               room,
+              roomid,
               fromdate,
               todate,
               totalamount,
               totaldays,
+              status,              
             }) => {
               return (
-                <ProfileRooms
+                <ProfileBookings
                   key={_id}
+                  id={_id}
                   createdAt={createdAt}
                   room={room}
                   fromdate={fromdate}
                   todate={todate}
                   totalamount={totalamount}
                   totaldays={totaldays}
+                  status={status}
+                  handleCancelBooking={() => cancelBooking(_id, roomid)}
                 />
               );
             }
