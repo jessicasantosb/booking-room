@@ -4,15 +4,16 @@ import { RoomProvider } from './contexts/RoomContext';
 import { UserStorage } from './contexts/UserContext';
 
 import Layout from './components/Layout';
-import ProfileLayout from './components/ProfileLayout';
+import ProfileLayout from './components/UserProfile/ProfileLayout';
 
 import Booking from './pages/Booking';
-import Bookings from './pages/Bookings';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
-import Profile from './pages/Profile';
 import Register from './pages/Register';
+import Bookings from './pages/UserProfile/Bookings';
+import Profile from './pages/UserProfile/Profile';
+import AdminLayout from './components/AdminProfile/AdminLayout';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: 'admin',
+        element: <AdminLayout/>
+      }
     ],
   },
 ]);

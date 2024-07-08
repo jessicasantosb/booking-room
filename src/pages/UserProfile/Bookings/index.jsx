@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'react';
-import ProfileBookings from '../../components/ProfileBookings';
-import Error from '../../components/interfaces/Error';
-import Loading from '../../components/interfaces/Loading';
-import { RoomContext } from '../../contexts/RoomContext';
-import { UserContext } from '../../contexts/UserContext';
+import ProfileBookings from '../../../components/UserProfile/ProfileBookings';
+import Error from '../../../components/interfaces/Error';
+import Loading from '../../../components/interfaces/Loading';
+import { RoomContext } from '../../../contexts/RoomContext';
+import { UserContext } from '../../../contexts/UserContext';
 import './index.scss';
 
 export default function Bookings() {
