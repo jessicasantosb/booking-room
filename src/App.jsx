@@ -5,15 +5,21 @@ import { UserStorage } from './contexts/UserContext';
 
 import Layout from './components/Layout';
 import ProfileLayout from './components/UserProfile/ProfileLayout';
+import AdminLayout from './components/Admin/AdminLayout';
 
 import Booking from './pages/Booking';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Register from './pages/Register';
+
 import Bookings from './pages/UserProfile/Bookings';
 import Profile from './pages/UserProfile/Profile';
-import AdminLayout from './components/AdminProfile/AdminLayout';
+
+import AllBookings from './pages/Admin/AllBookings';
+import AllRooms from './pages/Admin/AllRooms';
+import AllUsers from './pages/Admin/AllUsers';
+import CreateRoom from './pages/Admin/CreateRoom';
 
 const router = createBrowserRouter([
   {
@@ -56,8 +62,26 @@ const router = createBrowserRouter([
       },
       {
         path: 'admin',
-        element: <AdminLayout/>
-      }
+        element: <AdminLayout />,
+        children: [
+          {
+            index: true,
+            element: <AllBookings />,
+          },
+          {
+            path: 'rooms',
+            element: <AllRooms />,
+          },
+          {
+            path: 'createroom',
+            element: <CreateRoom />,
+          },
+          {
+            path: 'users',
+            element: <AllUsers />,
+          },
+        ],
+      },
     ],
   },
 ]);

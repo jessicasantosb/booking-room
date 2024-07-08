@@ -1,0 +1,12 @@
+.adminDashboard {
+  padding-block: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-transform: uppercase;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+}
