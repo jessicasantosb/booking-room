@@ -1,13 +1,27 @@
 @use '../../styles/colors.scss'as colors;
+@use '../../styles/fonts.scss'as fonts;
 
 .bookings {
+  position: relative;
   &__title {
     padding-block: 2rem;
   }
 
   &__subtitle {
-    color: colors.$color-primary;
     padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    color: colors.$color-primary;
+
+    &--count {
+      padding: 5px;
+      font-size: fonts.$sm;
+      border-radius: 3px;
+      background-color: colors.$color-primary;
+      color: colors.$color-shade50;
+    }
   }
 
   &__rooms {

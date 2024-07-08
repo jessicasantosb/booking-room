@@ -20,7 +20,10 @@ export default function Bookings() {
   return (
     <div className='bookings'>
       <h2 className='bookings__title'>Olá, {user?.name}!</h2>
-      <h3 className='bookings__subtitle'>Suas reservas</h3>
+      <div className='bookings__subtitle'>
+        <h3>Suas reservas</h3>
+        <p className='bookings__subtitle--count'>{userBookings.length}</p>
+      </div>
       {error ? (
         <Error error='Algo deu errado. Tente novamente mais tarde, por favor!' />
       ) : (
