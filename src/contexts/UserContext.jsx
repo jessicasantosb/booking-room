@@ -3,7 +3,7 @@ import { createContext, useCallback, useEffect, useState } from 'react';
 
 export const UserContext = createContext();
 
-export function UserStorage({ children }) {
+export function UserProvider({ children }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);

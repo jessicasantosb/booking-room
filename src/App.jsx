@@ -1,7 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.scss';
 import { RoomProvider } from './contexts/RoomContext';
-import { UserStorage } from './contexts/UserContext';
+import { UserProvider } from './contexts/UserContext';
+import { AdminProvider } from './contexts/AdminContext';
 
 import Layout from './components/Layout';
 import ProfileLayout from './components/UserProfile/ProfileLayout';
@@ -88,11 +89,13 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <UserStorage>
-      <RoomProvider>
-        <RouterProvider router={router} />
-      </RoomProvider>
-    </UserStorage>
+    <AdminProvider>
+      <UserProvider>
+        <RoomProvider>
+          <RouterProvider router={router} />
+        </RoomProvider>
+      </UserProvider>
+    </AdminProvider>
   );
 }
 
