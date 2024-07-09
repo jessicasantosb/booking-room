@@ -6,6 +6,7 @@ export const AdminContext = createContext();
 export function AdminProvider({ children }) {
   const [allBookings, setAllBookings] = useState([]);
   const [allRooms, setAllRooms] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -33,13 +34,27 @@ export function AdminProvider({ children }) {
     }
   };
 
+  const getAllUsers = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get('/api/admin/getallusers');
+      setAllUsers(response.data);
+      setLoading(false);
+    } catch (error) {
+      setError(true);
+      setLoading(false);
+    }
+  };
+
   return (
     <AdminContext.Provider
       value={{
         getAllBookings,
         getAllRooms,
+        getAllUsers,
         allBookings,
         allRooms,
+        allUsers,
         error,
         loading,
       }}
