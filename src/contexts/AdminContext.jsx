@@ -46,12 +46,24 @@ export function AdminProvider({ children }) {
     }
   };
 
+  const createRoom = async (newroom) => {
+    try {
+      setLoading(true);
+      await axios.post('/api/admin/createroom', newroom);
+      setLoading(false);
+    } catch (error) {
+      setError(true);
+      setLoading(false);
+    }
+  };
+
   return (
     <AdminContext.Provider
       value={{
         getAllBookings,
         getAllRooms,
         getAllUsers,
+        createRoom,
         allBookings,
         allRooms,
         allUsers,
