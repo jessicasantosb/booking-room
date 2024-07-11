@@ -1,12 +1,15 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.scss';
+import { AdminProvider } from './contexts/AdminContext';
+// import { AuthProvider } from './contexts/AuthContext';
 import { RoomProvider } from './contexts/RoomContext';
 import { UserProvider } from './contexts/UserContext';
-import { AdminProvider } from './contexts/AdminContext';
+import AdminRoutes from './routes/AdminRoutes';
+import ProtectedRoutes from './routes/ProtectedRoutes';
 
+import AdminLayout from './components/Admin/AdminLayout';
 import Layout from './components/Layout';
 import ProfileLayout from './components/UserProfile/ProfileLayout';
-import AdminLayout from './components/Admin/AdminLayout';
 
 import Booking from './pages/Booking';
 import Home from './pages/Home';
@@ -44,42 +47,52 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: 'booking/:roomid/:fromDate/:toDate',
-        element: <Booking />,
-      },
-      {
-        path: 'profile',
-        element: <ProfileLayout />,
+        element: <ProtectedRoutes />,
         children: [
           {
-            index: true,
-            element: <Profile />,
+            path: 'booking/:roomid/:fromDate/:toDate',
+            element: <Booking />,
           },
           {
-            path: 'bookings',
-            element: <Bookings />,
-          },
-        ],
-      },
-      {
-        path: 'admin',
-        element: <AdminLayout />,
-        children: [
-          {
-            index: true,
-            element: <AllBookings />,
-          },
-          {
-            path: 'rooms',
-            element: <AllRooms />,
+            path: 'profile',
+            element: <ProfileLayout />,
+            children: [
+              {
+                index: true,
+                element: <Profile />,
+              },
+              {
+                path: 'bookings',
+                element: <Bookings />,
+              },
+            ],
           },
           {
-            path: 'createroom',
-            element: <CreateRoom />,
-          },
-          {
-            path: 'users',
-            element: <AllUsers />,
+            element: <AdminRoutes />,
+            children: [
+              {
+                path: 'admin',
+                element: <AdminLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <AllBookings />,
+                  },
+                  {
+                    path: 'rooms',
+                    element: <AllRooms />,
+                  },
+                  {
+                    path: 'createroom',
+                    element: <CreateRoom />,
+                  },
+                  {
+                    path: 'users',
+                    element: <AllUsers />,
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
@@ -89,6 +102,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
+    // <AuthProvider>
     <AdminProvider>
       <UserProvider>
         <RoomProvider>
@@ -96,6 +110,7 @@ function App() {
         </RoomProvider>
       </UserProvider>
     </AdminProvider>
+    // </AuthProvider>
   );
 }
 
