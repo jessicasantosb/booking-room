@@ -1,65 +1,76 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
 import Input from '../../components/Input';
 import TermsFooter from '../../components/TermsFooter';
 import Error from '../../components/interfaces/Error';
 import { UserContext } from '../../contexts/UserContext';
+import useForm from '../../hooks/useForm';
 import './index.scss';
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const name = useForm();
+  const email = useForm('email');
+  const password = useForm('password');
+  const confirmPassword = useForm('confirmPassword');
 
   const { userRegister, error, loading } = useContext(UserContext);
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (password === confirmPassword) {
-      const user = { name, email, password, confirmPassword };
+    const nameValue = name.value;
+    const emailValue = email.value;
+    const passwordValue = password.value;
+    const confirmPasswordValue = confirmPassword.value;
+
+    if (passwordValue !== confirmPasswordValue) {
+      alert('As senhas devem ser iguais.');
+      return;
+    }
+
+    if (
+      name.validate() &&
+      email.validate() &&
+      password.validate() &&
+      confirmPassword.validate()
+    ) {
+      const user = {
+        nameValue,
+        emailValue,
+        passwordValue,
+        confirmPasswordValue,
+      };
+
       userRegister(user);
-    } else {
-      alert('Password not matched');
     }
   };
 
   return (
     <section className='register container'>
-      {error && <Error error='Register failed. Please try again later.' />}
+      {error && <Error error='Erro ao fazer o registro.' />}
       <main className='register__content'>
         <h1 className='register__title'>Create an account</h1>
 
         <form onSubmit={handleRegister}>
-          <Input
-            placeholder='Your name'
-            type='text'
-            name={name}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <Input placeholder='Your name' type='text' name='name' {...name} />
           <Input
             placeholder='Your email'
             type='email'
-            name={email}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name='email'
+            {...email}
           />
           <Input
             placeholder='Create a password'
             type='password'
-            name={password}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name='password'
+            {...password}
           />
           <Input
             placeholder='Confirm password'
             type='password'
-            name={confirmPassword}
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            name='confirmPassword'
+            {...confirmPassword}
           />
 
           <button

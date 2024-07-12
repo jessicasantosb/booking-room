@@ -1,29 +1,35 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
 import Input from '../../components/Input';
 import TermsFooter from '../../components/TermsFooter';
 import Error from '../../components/interfaces/Error';
 import { UserContext } from '../../contexts/UserContext';
+import useForm from '../../hooks/useForm';
 import './index.scss';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const email = useForm('email');
+  const password = useForm();
 
   const { userLogin, error, loading } = useContext(UserContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const user = { email, password };
+    if (email.validate() && password.validate()) {
+      const emailValue = email.value;
+      const passwordValue = password.value;
 
-    userLogin(user);
+      const user = { emailValue, passwordValue };
+
+      userLogin(user);
+    }
   };
 
   return (
     <section className='login container'>
-      {error && <Error error='Login failed. Please try again later.' />}
+      {error && <Error error='Email ou senha incorreto.' />}
       <main className='login__content'>
         <h1 className='login__title'>Login</h1>
 
@@ -31,16 +37,14 @@ export default function Login() {
           <Input
             placeholder='Your email'
             type='email'
-            name={email}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name='email'
+            {...email}
           />
           <Input
             placeholder='Create a password'
             type='password'
-            name={password}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name='password'
+            {...password}
           />
 
           <button

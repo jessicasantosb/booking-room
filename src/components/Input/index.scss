@@ -35,6 +35,7 @@
   }
 
   &__error {
+    padding-top: 0.15rem;
     color: colors.$color-critical;
     font-size: fonts.$sm;
   }
