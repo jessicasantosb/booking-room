@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AdminContext } from '../../../contexts/AdminContext';
+import Button from '../../../components/Button';
 import Input from '../../../components/Input';
-import Loading from '../../../components/interfaces/Loading'
-import Error from '../../../components/interfaces/Error'
+import Error from '../../../components/interfaces/Error';
+import Loading from '../../../components/interfaces/Loading';
+import { AdminContext } from '../../../contexts/AdminContext';
 import './index.scss';
 
 export default function CreateRoom() {
@@ -36,10 +37,10 @@ export default function CreateRoom() {
     };
 
     createRoom(newroom);
-    navigate('/admin/rooms')
+    navigate('/admin/rooms');
   };
 
-  if (loading) return <Loading />
+  if (loading) return <Loading />;
 
   return (
     <section className='createRoom'>
@@ -112,9 +113,8 @@ export default function CreateRoom() {
           onChange={(e) => setDescription(e.target.value)}
           rows='5'
         ></textarea>
-        <button type='submit' className='button'>
-          Enviar
-        </button>
+
+        <Button text='Enviar' type='submit' />
       </form>
     </section>
   );

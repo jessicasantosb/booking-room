@@ -36,38 +36,3 @@
     padding: 2rem;
   }
 }
-
-.button,
-.button--disable {
-  padding: 0.5rem;
-  margin-block: 2rem;
-  width: 100%;
-  border: 0;
-  border-radius: 5px;
-  text-transform: uppercase;
-}
-
-.button {
-  background-color: colors.$color-secondary;
-  color: colors.$color-shade50;
-  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.308);
-  cursor: pointer;
-
-  &:hover {
-    box-shadow: none;
-    transform: scale(0.98);
-    opacity: 0.9;
-  }
-
-  &--disable {
-    background-color: rgba(128, 128, 128, 0.589);
-    color: colors.$color-text;
-    cursor: default;
-
-    &:hover {
-      box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.308);
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-}

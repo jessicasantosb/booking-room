@@ -1,0 +1,36 @@
+@use '../../styles/colors.scss' as colors;
+
+.button,
+.button--disable {
+  padding: 0.5rem;
+  margin-block: 2rem;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.button {
+  background-color: colors.$color-secondary;
+  color: colors.$color-shade50;
+  box-shadow: colors.$color-box-shadow-lg;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: none;
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+
+  &--disable {
+    background-color: rgba(128, 128, 128, 0.589);
+    color: colors.$color-text;
+    cursor: default;
+
+    &:hover {
+      box-shadow: colors.$color-box-shadow-lg;
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}

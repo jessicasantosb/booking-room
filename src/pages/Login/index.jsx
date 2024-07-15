@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import BeatLoader from 'react-spinners/BeatLoader';
+import Button from '../../components/Button';
 import Input from '../../components/Input';
 import TermsFooter from '../../components/TermsFooter';
 import Error from '../../components/interfaces/Error';
@@ -47,20 +47,7 @@ export default function Login() {
             {...password}
           />
 
-          <button
-            className={`button ${loading && 'button--disable'}`}
-            type='submit'
-          >
-            login{' '}
-            {loading && (
-              <BeatLoader
-                color='#191e3b'
-                size={2}
-                aria-label='Loading Spinner'
-                data-testid='loader'
-              />
-            )}
-          </button>
+          <Button text='entrar' type='submit' loading={loading} />
         </form>
 
         <p>

@@ -1,3 +1,4 @@
+import Button from '../../Button';
 import './index.scss';
 
 export default function ProfileRooms({
@@ -56,12 +57,11 @@ export default function ProfileRooms({
       </p>
 
       {status !== 'cancelado' && (
-        <button
-          className='button profileCard__button'
-          onClick={handleCancelBooking}
-        >
-          cancelar reserva
-        </button>
+          <Button
+            text='cancelar reserva'
+            type='button'
+            onClick={handleCancelBooking}
+          />
       )}
     </div>
   );

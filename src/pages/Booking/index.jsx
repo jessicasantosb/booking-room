@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 
 import BookingSuccess from '../../components/BookingSuccess';
+import Button from '../../components/Button';
 import Error from '../../components/interfaces/Error';
 import Loading from '../../components/interfaces/Loading';
 import { RoomContext } from '../../contexts/RoomContext';
@@ -125,7 +126,7 @@ export default function Booking() {
               token={onToken}
               stripeKey='pk_test_51PXUh0GvxCcFMXvLZhpSDdfn26mYzjgRKPzqGN3vA0VEC3DO64je2XnwTOQS5vQz8VQuuvgxBBJ6ACH0euXmVear0049p8nuzJ'
             >
-              <button className='button'>Pagar agora</button>
+              <Button text='Pagar agora' type='button' />
             </StripeCheckout>
           </div>
         </main>

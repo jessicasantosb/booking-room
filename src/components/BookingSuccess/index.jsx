@@ -1,10 +1,11 @@
-import { IoClose } from 'react-icons/io5';
 import { CiCircleCheck } from 'react-icons/ci';
+import { IoClose } from 'react-icons/io5';
 
+import Button from '../Button';
 import './index.scss';
 export default function BookingSuccess({
   handleModalOutsideClick,
-  handleNavigate
+  handleNavigate,
 }) {
   return (
     <div className='modal bookingModal' onClick={handleModalOutsideClick}>
@@ -19,12 +20,7 @@ export default function BookingSuccess({
         <p className='bookingModal__content--text'>
           Seu quarto foi reservado com sucesso!
         </p>
-        <button
-          onClick={handleNavigate}
-          className='button bookingModal__content--button'
-        >
-          ok
-        </button>
+        <Button text='ok' type='button' onClick={handleNavigate} />
       </div>
     </div>
   );
