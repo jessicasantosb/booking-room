@@ -18,7 +18,7 @@
     background-color: colors.$color-secondary;
     color: colors.$color-shade50;
     border-radius: 6px;
-    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.308);
+    box-shadow: colors.$color-box-shadow;
 
     &:hover {
       transform: scale(0.95);

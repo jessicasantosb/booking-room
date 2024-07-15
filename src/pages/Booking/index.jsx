@@ -69,7 +69,7 @@ export default function Booking() {
       ) : (
         <main className='booking'>
           <div>
-            <h2 className='title'>{room.name}</h2>
+            <h2>{room.name}</h2>
             <div className='booking__images'>
               <img src={room.imageurls && room.imageurls[0]} alt={room.name} />;
             </div>
@@ -77,7 +77,7 @@ export default function Booking() {
 
           <div>
             <div className='booking__content'>
-              <h2 className='title booking__title'>Detalhes da sua reserva</h2>
+              <h2 className='booking__title'>Detalhes da sua reserva</h2>
               <p>
                 Nome: <span>{user?.name}</span>
               </p>
@@ -91,7 +91,7 @@ export default function Booking() {
                 Máximo de lugares: <span>{room.maxcount}</span>
               </p>
 
-              <h3 className='title booking__subtitle'>Total</h3>
+              <h3 className='booking__subtitle'>Total</h3>
               <p>
                 Total de dias: <span>{totalDays}</span>
               </p>

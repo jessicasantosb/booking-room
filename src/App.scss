@@ -1,57 +1,9 @@
+@forward './styles/globals.scss';
 @use './styles/colors.scss'as colors;
 @use './styles/fonts.scss'as fonts;
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-
-html,
-body {
-  width: 100%;
-  font-family: fonts.$font-secondary;
-  background-color: colors.$color-background;
-  color: colors.$color-text;
-  scroll-behavior: smooth;
-}
-
-h1,
-img,
-label,
-button {
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-ul,
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: colors.$color-text;
-}
-
-img {
-  max-width: 100%;
-}
-
-span {
-  font-style: italic;
-}
-
 .container {
-  max-width: 1366px;
+  max-width: 1166px;
   padding-inline: 1rem;
   margin-inline: auto;
 }
@@ -83,10 +35,6 @@ span {
     margin: auto;
     padding: 2rem;
   }
-}
-
-.title {
-  font-family: fonts.$font-primary;
 }
 
 .button,

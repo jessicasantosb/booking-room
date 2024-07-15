@@ -1,14 +1,12 @@
 @use '../../styles/colors.scss'as colors;
 
-.link {}
-
 .booking {
   max-width: 800px;
   margin-inline: auto;
   padding: 2rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.308);
+  box-shadow: colors.$color-box-shadow;
 
   @media screen and (max-width: 800px) {
     grid-template-columns: 1fr;
