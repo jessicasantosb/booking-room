@@ -1,34 +1,42 @@
 @use '../../styles/colors.scss'as colors;
+@use '../../styles/fonts.scss'as fonts;
 
 .card {
   position: relative;
-  border: 1px solid colors.$color-text;
-  border-radius: 15px;
-  padding: 1rem;
-
-  &__slider {
-    min-height: 150px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-  }
 
   &__type {
     position: absolute;
     top: 2rem;
     right: 0;
     padding: 0.15rem;
-    background-color: colors.$color-secondary-container;
+    background-color: colors.$color-primary;
     color: colors.$color-shade50;
   }
 
   &__name {
-    padding-block: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  &__price {
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    color: colors.$color-primary;
+    font-size: fonts.$lg;
+    font-weight: bold;
+
+    &--text {
+      color: colors.$color-text;
+      font-size: fonts.$sm;
+      font-weight: normal;
+    }
   }
 
   &__links {
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     font-size: 1rem;
 
     &--link {

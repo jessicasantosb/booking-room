@@ -1,6 +1,54 @@
+@use '../../styles/colors.scss'as colors;
+@use '../../styles/fonts.scss'as fonts;
+
 .home {
-  &__subtitle {
+  &__separator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
+
+    border-radius: 15px;
+    font-size: fonts.$md;
+    color: colors.$color-shade50;
+    background-color: colors.$color-accent-container;
+
+    @media screen and (max-width: 940px) {
+      gap: 1.15rem;
+      flex-direction: column;
+    }
+  }
+
+  &__carousel {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: scroll;
+
+    &--item {
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+
+      padding: 1.5rem;
+      border-radius: 10px;
+      font-size: fonts.$sm;
+      background-color: colors.$color-accent;
+    }
+
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  &__title {
     padding-block: 2rem;
+    font-size: fonts.$lg;
   }
 
   &__rooms {

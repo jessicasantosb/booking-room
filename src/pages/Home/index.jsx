@@ -9,6 +9,7 @@ import Loading from '../../components/interfaces/Loading';
 
 import { RoomContext } from '../../contexts/RoomContext';
 
+import { FaCalendar, FaMoon, FaTag } from 'react-icons/fa';
 import './index.scss';
 
 dayjs.extend(isBetween);
@@ -94,7 +95,25 @@ export default function Home() {
         searchKey={searchKey}
       />
 
-      <h2 className='home__subtitle'>Confira estes quartos incríveis</h2>
+      <div className='home__separator'>
+        <h3>Experiências únicas esperam por você</h3>
+        <div className='home__carousel'>
+          <div className='home__carousel--item'>
+            <FaMoon size={70} />
+            <p>Desfrute de vantagens exclusivas durante sua estadia</p>
+          </div>
+          <div className='home__carousel--item'>
+            <FaTag size={70} />
+            <p>Reserve agora e acumule pontos para futuras estadias</p>
+          </div>
+          <div className='home__carousel--item'>
+            <FaCalendar size={70} />
+            <p>Flexibilidade total com nossa política de cancelamento</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 className='home__title'>Confira estes quartos incríveis</h2>
       {error ? (
         <Error error='Algo deu errado. Por favor, tente novamente mais tarde.' />
       ) : (
