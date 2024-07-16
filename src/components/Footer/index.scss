@@ -1,0 +1,39 @@
+@use '../../styles/colors.scss'as colors;
+
+.footer {
+  margin-top: 3rem;
+  padding-block: 2rem;
+  background-color: colors.$color-shade50;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__logo {
+    padding-bottom: 2rem;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    &--div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      > *:hover{
+        text-decoration: underline;
+        color: colors.$color-accent;
+      }
+    }
+  }
+
+  &__copyright {
+    align-self: flex-end;
+    padding-top: 2rem;
+  }
+}
