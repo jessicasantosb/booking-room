@@ -2,16 +2,28 @@
 @use '../../styles/fonts.scss'as fonts;
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
   background-color: colors.$color-shade50;
-  box-shadow: 0 3px 2px -2px rgba(160, 159, 159, 0.274);
-  
+  box-shadow: colors.$color-box-shadow-lg;
+
+  &--dark {
+    background-color: colors.$color-secondary;
+  }
+
   &__nav {
     height: 60px;
     font-size: fonts.$base;
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
 
+  &__logo {
+    &--dark {
+      color: colors.$color-shade50;
+    }
   }
 
   &__menu {
@@ -22,14 +34,18 @@
     align-items: center;
     gap: 0.25rem;
     cursor: pointer;
+
+    &--dark {
+      color: colors.$color-shade50;
+    }
   }
 
   &__dropdown {
+    min-width: 200px;
     position: absolute;
-    top: 60px;
-    right: 0;
-    padding-block: 2rem;
-    padding-inline: 1rem;
+    top: 4.75rem;
+    right: 1rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -37,15 +53,33 @@
     gap: 0.75rem;
     background-color: colors.$color-shade50;
     box-shadow: colors.$color-box-shadow-lg;
-    border-bottom-left-radius: 5px;
+    border-radius: 5px;
     z-index: 50;
 
     &--hidden {
       display: none;
     }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      right: 30px;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid colors.$color-shade50;
+    }
   }
 
   &__link {
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+    background-color: colors.$color-background;
+
     &:hover {
       color: colors.$color-accent-container;
       text-decoration: underline;
@@ -53,11 +87,15 @@
   }
 
   &__logout {
-    background-color: transparent;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: colors.$color-background;
     border: 0;
+    font-family: fonts.$font-secondary;
     font-size: fonts.$base;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 0.25rem;
     cursor: pointer;
 
@@ -66,5 +104,4 @@
       text-decoration: underline;
     }
   }
-
 }
