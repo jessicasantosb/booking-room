@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
+import GoogleLogin from '../../components/GoogleLogin';
 import Input from '../../components/Input';
 import TermsFooter from '../../components/TermsFooter';
 import Error from '../../components/interfaces/Error';
@@ -53,21 +54,16 @@ export default function Register() {
         <h1 className='register__title'>Create an account</h1>
 
         <form onSubmit={handleRegister}>
-          <Input placeholder='Your name' type='text' name='name' {...name} />
+          <Input placeholder='Nome' type='text' name='name' {...name} />
+          <Input placeholder='E-mail' type='email' name='email' {...email} />
           <Input
-            placeholder='Your email'
-            type='email'
-            name='email'
-            {...email}
-          />
-          <Input
-            placeholder='Create a password'
+            placeholder='Crie uma senha'
             type='password'
             name='password'
             {...password}
           />
           <Input
-            placeholder='Confirm password'
+            placeholder='Confirme a senha'
             type='password'
             name='confirmPassword'
             {...confirmPassword}
@@ -77,14 +73,15 @@ export default function Register() {
         </form>
 
         <p>
-          Already have a account?{' '}
+          Já possui uma conta?{' '}
           <Link to={'/login'} className='register__link'>
             Login
           </Link>
         </p>
-      </main>
 
-      <TermsFooter />
+        <GoogleLogin />
+        <TermsFooter />
+      </main>
     </section>
   );
 }

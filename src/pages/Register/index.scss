@@ -2,22 +2,14 @@
 @use '../../styles/fonts.scss'as fonts;
 
 .register {
-  height: 100dvh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-direction: column;
-  padding-top: 7rem;
   max-inline-size: 400px;
 
   &__content {
-    width: 100%;
-    padding: 1rem;
-    box-shadow: colors.$color-box-shadow;
-  }
-
-  &__title {
-    font-size: fonts.$lg;
+    margin-block: 2rem;
   }
 
   &__link {

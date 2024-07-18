@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
+import GoogleLogin from '../../components/GoogleLogin';
 import Input from '../../components/Input';
 import TermsFooter from '../../components/TermsFooter';
 import Error from '../../components/interfaces/Error';
@@ -31,17 +32,12 @@ export default function Login() {
     <section className='login container'>
       {error && <Error error='Email ou senha incorreto.' />}
       <main className='login__content'>
-        <h1 className='login__title'>Login</h1>
+        <h1 className='login__title'>Faça login</h1>
 
         <form onSubmit={handleLogin}>
+          <Input placeholder='E-mail' type='email' name='email' {...email} />
           <Input
-            placeholder='Your email'
-            type='email'
-            name='email'
-            {...email}
-          />
-          <Input
-            placeholder='Create a password'
+            placeholder='Senha'
             type='password'
             name='password'
             {...password}
@@ -51,14 +47,15 @@ export default function Login() {
         </form>
 
         <p>
-          Still don&apos;t have a account?{' '}
+          Ainda não possui uma conta?{' '}
           <Link to={'/register'} className='login__link'>
-            Register
+            Registre-se
           </Link>
         </p>
-      </main>
 
-      <TermsFooter />
+        <GoogleLogin />
+        <TermsFooter />
+      </main>
     </section>
   );
 }

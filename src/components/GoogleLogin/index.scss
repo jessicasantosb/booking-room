@@ -1,0 +1,60 @@
+ @use '../../styles/colors.scss'as colors;
+
+ .googleLogin {
+   margin-block: 2rem;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   gap: 1rem;
+
+   &__divisor {
+
+     &::before,
+     &::after {
+       content: '';
+       position: absolute;
+       display: block;
+       top: 11px;
+       width: 45%;
+       height: 1px;
+       background: black;
+     }
+
+     &::after {
+       right: 0px;
+     }
+
+     &::before {
+       left: 0px;
+     }
+   }
+
+   &__icon {
+    display: flex;
+     border-radius: 3px;
+     background-color: colors.$color-background;
+   }
+
+   &__button {
+     height: 40px;
+     width: 100%;
+     margin-top: 1rem;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 0.5rem;
+     border: 0;
+     border-radius: 3px;
+     color: colors.$color-shade50;
+     background-color: colors.$color-secondary;
+     cursor: pointer;
+
+     &:hover {
+       box-shadow: none;
+       transform: scale(0.98);
+       opacity: 0.9;
+     }
+   }
+ }

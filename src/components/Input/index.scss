@@ -2,9 +2,11 @@
 @use '../../styles/fonts.scss'as fonts;
 
 .input {
+  height: 40px;
   width: 100%;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   display: flex;
+  align-items: center;
   border-radius: 5px;
   border: 1px solid colors.$color-text;
   background-color: colors.$color-shade50;
