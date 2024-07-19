@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BsSuitcase } from 'react-icons/bs';
 import { FaRegUserCircle } from 'react-icons/fa';
 import {
