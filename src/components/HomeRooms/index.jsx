@@ -65,6 +65,7 @@ export default function HomeRooms({ room, fromDate, toDate }) {
           name={room.name}
           description={room.description}
           images={room.imageurls}
+          price={room.rentproperty}
         />
       )}
     </>

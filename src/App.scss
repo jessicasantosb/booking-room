@@ -23,8 +23,13 @@
 
   &__button {
     position: absolute;
-    top: 2rem;
+    top: 1rem;
     right: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0.15rem;
+    border: 0;
+    background-color: transparent;
     cursor: pointer;
   }
 
@@ -33,6 +38,5 @@
     max-width: 700px;
     width: 100%;
     margin: auto;
-    padding: 2rem;
   }
 }

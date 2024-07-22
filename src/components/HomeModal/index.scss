@@ -1,15 +1,61 @@
 @use '../../styles/colors.scss'as colors;
 
-.modal {
-  &__content--home {
+.homemodal {
+  &__content {
     height: 70dvh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    background-color: colors.$color-secondary;
-    color: colors.$color-shade50;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: colors.$color-shade50;
+    box-shadow: colors.$color-box-shadow-lg;
+    overflow: hidden;
   }
 
-  &__images {
+  &__title {
+    padding-top: 1rem;
+    padding-inline: 1rem;
+  }
+
+  &__price {
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    color: colors.$color-primary;
+  }
+
+  &__slide {
+    position: relative;
+    height: 250px;
     display: flex;
+    transition: transform 0.3s ease;
+  }
+
+  &__image {
+    width: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  &__nav {
+    width: 100%;
+    padding-inline: 1rem;
+    position: absolute;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--button {
+      display: flex;
+      align-items: center;
+      border: 0;
+      background-color: colors.$color-shade50;
+      cursor: pointer;
+    }
+  }
+
+  &__description {
+    padding-bottom: 2rem;
+    padding-inline: 1rem;
   }
 }
