@@ -14,11 +14,11 @@ export default function AllUsers() {
   if (loading) return <Loading />;
 
   return (
-    <section className='allUsers'>
-      {error && <Error error='' />}
-      <h1 className='allUsers__title'>Todos os usuários</h1>
-      <div className='allUsers__table'>
-        <div className='allUsers__table--header'>
+    <section className='allusers'>
+      <h1 className='table__title'>Todos os usuários</h1>
+      {error && <Error error='Erro ao carregar os dados.' />}
+      <div className='table'>
+        <div className='table__header allusers__tableHeader'>
           <p>ID do Usuário</p>
           <p>Nome</p>
           <p>Email</p>
@@ -26,7 +26,7 @@ export default function AllUsers() {
         </div>
         {allUsers.map(({ _id, name, email, isAdmin }) => {
           return (
-            <div key={_id} className='allUsers__table--content'>
+            <div key={_id} className='table__content allusers__tableContent'>
               <p>{_id}</p>
               <p>{name}</p>
               <p>{email}</p>

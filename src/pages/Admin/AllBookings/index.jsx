@@ -16,10 +16,10 @@ export default function AllBookings() {
 
   return (
     <section className='allbookings'>
-      {error && <Error error='' />}
-      <h1 className='allbookings__title'>Todas as reservas</h1>
-      <div className='allbookings__table'>
-        <div className='allbookings__table--header'>
+      <h1 className='table__title'>Todas as reservas</h1>
+      {error && <Error error='Erro ao carregar os dados.' />}
+      <div className='table'>
+        <div className='table__header allbookings__tableHeader'>
           <p>ID da Reserva</p>
           <p>ID do Usuário</p>
           <p>Quarto</p>
@@ -29,7 +29,7 @@ export default function AllBookings() {
         </div>
         {allBookings.map(({ _id, userid, room, fromdate, todate, status }) => {
           return (
-            <div key={_id} className='allbookings__table--content'>
+            <div key={_id} className='table__content allbookings__tableContent'>
               <p>{_id}</p>
               <p>{userid}</p>
               <p>{room}</p>

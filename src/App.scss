@@ -40,3 +40,36 @@
     margin: auto;
   }
 }
+
+.table {
+  margin-top: 2rem;
+
+  &__title {
+    padding-bottom: 1rem;
+  }
+
+  &__header,
+  &__content {
+    width: 1100px;
+    display: grid;
+  }
+
+  &__header>*,
+  &__content>* {
+    padding: 0.5rem;
+    border: 1px solid colors.$color-text;
+  }
+
+  &__header>* {
+    border: 1px solid colors.$color-secondary-container;
+  }
+
+  &__header {
+    background-color: colors.$color-secondary;
+    color: colors.$color-shade50;
+  }
+
+  &__content {
+    background-color: colors.$color-shade50;
+  }
+}

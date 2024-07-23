@@ -15,10 +15,10 @@ export default function AllRooms() {
 
   return (
     <section className='allrooms'>
-      {error && <Error error='' />}
-      <h1 className='allrooms__title'>Todos os quartos disponíveis</h1>
-      <div className='allrooms__table'>
-        <div className='allrooms__table--header'>
+      <h1 className='table__title'>Todos os quartos disponíveis</h1>
+      {error && <Error error='Erro ao carregar os dados.' />}
+      <div className='table'>
+        <div className='table__header allrooms__tableHeader'>
           <p>ID da Quarto</p>
           <p>Nome</p>
           <p>Tipo</p>
@@ -29,7 +29,7 @@ export default function AllRooms() {
         {allRooms.map(
           ({ _id, name, type, rentproperty, maxcount, phonenumber }) => {
             return (
-              <div key={_id} className='allrooms__table--content'>
+              <div key={_id} className='table__content allrooms__tableContent'>
                 <p>{_id}</p>
                 <p>{name}</p>
                 <p>{type}</p>
