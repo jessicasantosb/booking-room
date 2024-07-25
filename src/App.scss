@@ -71,5 +71,9 @@
 
   &__content {
     background-color: colors.$color-shade50;
+
+    &:hover {
+      background-color: #191e3b2a;
+    }
   }
 }

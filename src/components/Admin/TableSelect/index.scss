@@ -1,0 +1,14 @@
+ @use '../../../styles/colors.scss'as colors;
+
+ .tableSelect {
+   display: flex;
+   gap: 0.5rem;
+
+   &__options {
+     padding: 0.25rem;
+     border-radius: 3px;
+     background-color: colors.$color-shade50;
+     outline-color: colors.$color-primary;
+     border-color: colors.$color-secondary;
+   }
+ }

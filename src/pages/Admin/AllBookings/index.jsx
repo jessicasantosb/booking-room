@@ -1,5 +1,7 @@
 import { useContext, useEffect } from 'react';
 import TableFilter from '../../../components/Admin/TableFilter';
+import TableOrdering from '../../../components/Admin/TableOrdering';
+import TableSelect from '../../../components/Admin/TableSelect';
 import Error from '../../../components/interfaces/Error';
 import Loading from '../../../components/interfaces/Loading';
 import { AdminContext } from '../../../contexts/AdminContext';
@@ -27,9 +29,15 @@ export default function AllBookings() {
 
       <TableFilter
         id='bookings'
-        label='Pesquise pelo ID do usuário ou da reserva'
+        label='Pesquise pelo ID do usuário, ID da reserva ou nome do quarto'
         searchResults={duplicateBookings}
         setSearchResults={setAllBookings}
+      />
+
+      <TableSelect
+        array={duplicateBookings}
+        getAll={getAllBookings}
+        setAll={setAllBookings}
       />
 
       {error && <Error error='Erro ao carregar os dados.' />}
@@ -40,7 +48,13 @@ export default function AllBookings() {
           <p>Nome do quarto</p>
           <p>Check in</p>
           <p>Check out</p>
-          <p>Status</p>
+          <p>
+            Status
+            <TableOrdering
+              array={duplicateBookings}
+              setOrderingResults={setAllBookings}
+            />
+          </p>
         </div>
         {allBookings.map(({ _id, userid, room, fromdate, todate, status }) => {
           return (
