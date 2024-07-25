@@ -1,11 +1,13 @@
 import { useContext, useEffect } from 'react';
+import TableFilter from '../../../components/Admin/TableFilter';
 import Error from '../../../components/interfaces/Error';
 import Loading from '../../../components/interfaces/Loading';
 import { AdminContext } from '../../../contexts/AdminContext';
 import './index.scss';
 
 export default function AllRooms() {
-  const { getAllRooms, allRooms, error, loading } = useContext(AdminContext);
+  const { getAllRooms, allRooms, duplicateRooms, setAllRooms, error, loading } =
+    useContext(AdminContext);
 
   useEffect(() => {
     getAllRooms();
@@ -16,11 +18,19 @@ export default function AllRooms() {
   return (
     <section className='allrooms'>
       <h1 className='table__title'>Todos os quartos disponíveis</h1>
+
+      <TableFilter
+        id='rooms'
+        label='Pesquise pelo ID do usuário ou nome do quarto'
+        searchResults={duplicateRooms}
+        setSearchResults={setAllRooms}
+      />
+
       {error && <Error error='Erro ao carregar os dados.' />}
       <div className='table'>
         <div className='table__header allrooms__tableHeader'>
           <p>ID da Quarto</p>
-          <p>Nome</p>
+          <p>Nome do quarto</p>
           <p>Tipo</p>
           <p>Valor por dia</p>
           <p>Máx. de pessoas</p>

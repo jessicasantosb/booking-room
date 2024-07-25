@@ -5,8 +5,11 @@ export const AdminContext = createContext();
 
 export function AdminProvider({ children }) {
   const [allBookings, setAllBookings] = useState([]);
+  const [duplicateBookings, setDuplicateBookings] = useState([]);
   const [allRooms, setAllRooms] = useState([]);
+  const [duplicateRooms, setDuplicateRooms] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
+  const [duplicateUsers, setDuplicateUsers] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -15,6 +18,7 @@ export function AdminProvider({ children }) {
       setLoading(true);
       const response = await axios.get('/api/admin/getallbookings');
       setAllBookings(response.data);
+      setDuplicateBookings(response.data);
       setLoading(false);
     } catch (error) {
       setError(true);
@@ -27,6 +31,7 @@ export function AdminProvider({ children }) {
       setLoading(true);
       const response = await axios.get('/api/admin/getallrooms');
       setAllRooms(response.data);
+      setDuplicateRooms(response.data);
       setLoading(false);
     } catch (error) {
       setError(true);
@@ -39,6 +44,7 @@ export function AdminProvider({ children }) {
       setLoading(true);
       const response = await axios.get('/api/admin/getallusers');
       setAllUsers(response.data);
+      setDuplicateUsers(response.data);
       setLoading(false);
     } catch (error) {
       setError(true);
@@ -67,6 +73,12 @@ export function AdminProvider({ children }) {
         allBookings,
         allRooms,
         allUsers,
+        setAllBookings,
+        duplicateBookings,
+        setAllRooms,
+        duplicateRooms,
+        setAllUsers,
+        duplicateUsers,
         error,
         loading,
       }}

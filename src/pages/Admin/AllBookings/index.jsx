@@ -1,12 +1,19 @@
 import { useContext, useEffect } from 'react';
+import TableFilter from '../../../components/Admin/TableFilter';
 import Error from '../../../components/interfaces/Error';
 import Loading from '../../../components/interfaces/Loading';
 import { AdminContext } from '../../../contexts/AdminContext';
 import './index.scss';
 
 export default function AllBookings() {
-  const { getAllBookings, allBookings, error, loading } =
-    useContext(AdminContext);
+  const {
+    getAllBookings,
+    allBookings,
+    duplicateBookings,
+    setAllBookings,
+    error,
+    loading,
+  } = useContext(AdminContext);
 
   useEffect(() => {
     getAllBookings();
@@ -17,12 +24,20 @@ export default function AllBookings() {
   return (
     <section className='allbookings'>
       <h1 className='table__title'>Todas as reservas</h1>
+
+      <TableFilter
+        id='bookings'
+        label='Pesquise pelo ID do usuário ou da reserva'
+        searchResults={duplicateBookings}
+        setSearchResults={setAllBookings}
+      />
+
       {error && <Error error='Erro ao carregar os dados.' />}
       <div className='table'>
         <div className='table__header allbookings__tableHeader'>
           <p>ID da Reserva</p>
           <p>ID do Usuário</p>
-          <p>Quarto</p>
+          <p>Nome do quarto</p>
           <p>Check in</p>
           <p>Check out</p>
           <p>Status</p>

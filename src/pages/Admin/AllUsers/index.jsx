@@ -1,11 +1,13 @@
 import { useContext, useEffect } from 'react';
+import TableFilter from '../../../components/Admin/TableFilter';
 import Error from '../../../components/interfaces/Error';
 import Loading from '../../../components/interfaces/Loading';
 import { AdminContext } from '../../../contexts/AdminContext';
 import './index.scss';
 
 export default function AllUsers() {
-  const { getAllUsers, allUsers, error, loading } = useContext(AdminContext);
+  const { getAllUsers, allUsers, setAllUsers, duplicateUsers, error, loading } =
+    useContext(AdminContext);
 
   useEffect(() => {
     getAllUsers();
@@ -16,6 +18,14 @@ export default function AllUsers() {
   return (
     <section className='allusers'>
       <h1 className='table__title'>Todos os usuários</h1>
+
+      <TableFilter
+        id='users'
+        label='Pesquise pelo ID do usuário, nome ou email'
+        searchResults={duplicateUsers}
+        setSearchResults={setAllUsers}
+      />
+
       {error && <Error error='Erro ao carregar os dados.' />}
       <div className='table'>
         <div className='table__header allusers__tableHeader'>
