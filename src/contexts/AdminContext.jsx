@@ -16,7 +16,7 @@ export function AdminProvider({ children }) {
   const getAllBookings = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/admin/getallbookings');
+      const response = await axios.get('/api/admin/bookings');
       setAllBookings(response.data);
       setDuplicateBookings(response.data);
       setLoading(false);
@@ -29,7 +29,7 @@ export function AdminProvider({ children }) {
   const getAllRooms = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/admin/getallrooms');
+      const response = await axios.get('/api/admin/rooms');
       setAllRooms(response.data);
       setDuplicateRooms(response.data);
       setLoading(false);
@@ -42,7 +42,7 @@ export function AdminProvider({ children }) {
   const getAllUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/admin/getallusers');
+      const response = await axios.get('/api/admin/users');
       setAllUsers(response.data);
       setDuplicateUsers(response.data);
       setLoading(false);
@@ -55,7 +55,7 @@ export function AdminProvider({ children }) {
   const createRoom = async (newroom) => {
     try {
       setLoading(true);
-      await axios.post('/api/admin/createroom', newroom);
+      await axios.post('/api/admin/room', newroom);
       setLoading(false);
     } catch (error) {
       setError(true);

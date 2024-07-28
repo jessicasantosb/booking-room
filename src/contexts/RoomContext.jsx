@@ -14,7 +14,7 @@ export function RoomProvider({ children }) {
   const getAllRooms = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/rooms/getallrooms');
+      const response = await axios.get('/api/rooms');
       setRooms(response.data);
       setDuplicateRooms(response.data);
       setLoading(false);
@@ -27,9 +27,7 @@ export function RoomProvider({ children }) {
   const getRoom = async (roomid) => {
     try {
       setLoading(true);
-      const response = await axios.post('/api/rooms/getroombyid', {
-        roomid: roomid,
-      });
+      const response = await axios.get(`/api/rooms/${roomid}`);
       setRoom(response.data);
       setLoading(false);
     } catch (error) {
@@ -61,7 +59,7 @@ export function RoomProvider({ children }) {
 
     try {
       setLoading(true);
-      await axios.post('/api/books/bookroom', bookingData);
+      await axios.post('/api/books', bookingData);
       setLoading(false);
     } catch (error) {
       setError(true);
@@ -72,9 +70,7 @@ export function RoomProvider({ children }) {
   const getUserBookings = async (userid) => {
     try {
       setLoading(true);
-      const response = await axios.post('/api/books/getbookingsbyuserid', {
-        userid: userid,
-      });
+      const response = await axios.get(`/api/books/${userid}`);
       setUserBookings(response.data);
       setLoading(false);
     } catch (error) {
@@ -86,12 +82,9 @@ export function RoomProvider({ children }) {
   const cancelBooking = async (bookingid, roomid) => {
     try {
       setLoading(true);
-      await axios.post('/api/books/cancelbooking', {
-        bookingid,
-        roomid,
-      });
+      await axios.put(`/api/books/${roomid}/${bookingid}`);
       setLoading(false);
-      location.reload()
+      location.reload();
     } catch (error) {
       setError(true);
       setLoading(false);
