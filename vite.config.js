@@ -7,7 +7,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         target:
-          'http://localhost:8001' || 'https://booking-room-backend.vercel.app',
+          'https://booking-room-backend.vercel.app',
         changeOrigin: true,
       },
     },
