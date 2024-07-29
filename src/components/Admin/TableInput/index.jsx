@@ -1,15 +1,22 @@
+import { useContext } from 'react';
+import { AdminContext } from '../../../contexts/AdminContext';
 import './index.scss';
 
-export default function TableFilter({
-  id,
-  label,
-  searchResults,
-  setSearchResults,
-}) {
+export default function TableFilter({ id, label }) {
+  const {
+    setAllBookings,
+    duplicateBookings,
+    setAllRooms,
+    duplicateRooms,
+    setAllUsers,
+    duplicateUsers,
+  } = useContext(AdminContext);
+
   const handleFilter = (e) => {
     const query = e.target.value.toLowerCase();
 
     const checkQuery = (value) => {
+      console.log(value);
       return value.toLowerCase().includes(query);
     };
 
@@ -35,13 +42,29 @@ export default function TableFilter({
         return result;
     };
 
-    const filteredResults = searchResults.filter((result) => {
-      if (id === 'bookings') return bookingsFilter(result);
-      if (id === 'rooms') return roomsFilter(result);
-      if (id === 'users') return usersFilter(result);
-    });
+    if (id === 'bookings') {
+      const filteredArray = duplicateBookings.filter((result) => {
+        return bookingsFilter(result);
+      });
 
-    setSearchResults(filteredResults);
+      setAllBookings(filteredArray);
+    }
+
+    if (id === 'rooms') {
+      const filteredArray = duplicateRooms.filter((result) => {
+        return roomsFilter(result);
+      });
+
+      setAllRooms(filteredArray);
+    }
+
+    if (id === 'users') {
+      const filteredArray = duplicateUsers.filter((result) => {
+        return usersFilter(result);
+      });
+
+      setAllUsers(filteredArray);
+    }
   };
 
   return (

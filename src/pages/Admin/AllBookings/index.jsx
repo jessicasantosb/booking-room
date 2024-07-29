@@ -1,21 +1,13 @@
 import { useContext, useEffect } from 'react';
-import TableFilter from '../../../components/Admin/TableFilter';
-import TableOrdering from '../../../components/Admin/TableOrdering';
-import TableSelect from '../../../components/Admin/TableSelect';
+import AdminFilter from '../../../components/Admin/AdminFilter';
 import Error from '../../../components/interfaces/Error';
 import Loading from '../../../components/interfaces/Loading';
 import { AdminContext } from '../../../contexts/AdminContext';
 import './index.scss';
 
 export default function AllBookings() {
-  const {
-    getAllBookings,
-    allBookings,
-    duplicateBookings,
-    setAllBookings,
-    error,
-    loading,
-  } = useContext(AdminContext);
+  const { getAllBookings, allBookings, error, loading } =
+    useContext(AdminContext);
 
   useEffect(() => {
     getAllBookings();
@@ -27,17 +19,10 @@ export default function AllBookings() {
     <section className='allbookings'>
       <h1 className='table__title'>Todas as reservas</h1>
 
-      <TableFilter
+      <AdminFilter
         id='bookings'
         label='Pesquise pelo ID do usuário, ID da reserva ou nome do quarto'
-        searchResults={duplicateBookings}
-        setSearchResults={setAllBookings}
-      />
-
-      <TableSelect
-        array={duplicateBookings}
-        getAll={getAllBookings}
-        setAll={setAllBookings}
+        options={['reservado', 'cancelado']}
       />
 
       {error && <Error error='Erro ao carregar os dados.' />}
@@ -46,15 +31,11 @@ export default function AllBookings() {
           <p>ID da Reserva</p>
           <p>ID do Usuário</p>
           <p>Nome do quarto</p>
-          <p>Check in</p>
+          <div>
+            <p>Check in </p>
+          </div>
           <p>Check out</p>
-          <p>
-            Status
-            <TableOrdering
-              array={duplicateBookings}
-              setOrderingResults={setAllBookings}
-            />
-          </p>
+          <p>Status</p>
         </div>
         {allBookings.map(({ _id, userid, room, fromdate, todate, status }) => {
           return (

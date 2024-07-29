@@ -1,9 +1,10 @@
  @use '../../../styles/colors.scss'as colors;
 
- .tableSelect {
+ .tableOrdering {
    display: flex;
    gap: 0.5rem;
-   
+   cursor: pointer;
+
    &__options {
      padding: 0.25rem;
      border-radius: 3px;
