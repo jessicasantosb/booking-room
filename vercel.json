@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api",
+      "destination": "https://booking-room-backend.vercel.app/api"
+    }
+  ]
+}
