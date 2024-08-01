@@ -8,6 +8,7 @@ export function RoomProvider({ children }) {
   const [duplicateRooms, setDuplicateRooms] = useState([]);
   const [room, setRoom] = useState([]);
   const [userBookings, setUserBookings] = useState([]);
+  const [duplicatedUserBookings, setDuplicatedUserBookings] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -72,6 +73,7 @@ export function RoomProvider({ children }) {
       setLoading(true);
       const response = await axios.get(`/api/books/${userid}`);
       setUserBookings(response.data);
+      setDuplicatedUserBookings(response.data);
       setLoading(false);
     } catch (error) {
       setError(true);
@@ -106,6 +108,8 @@ export function RoomProvider({ children }) {
         room,
         duplicateRooms,
         userBookings,
+        setUserBookings,
+        duplicatedUserBookings,
       }}
     >
       {children}

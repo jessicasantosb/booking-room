@@ -8,15 +8,16 @@
   }
 
   &__subtitle {
-    padding-bottom: 1rem;
+    margin-bottom: 2rem;
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    align-items: start;
+    justify-content: space-between;
     text-transform: uppercase;
     color: colors.$color-primary;
 
     &--count {
       padding: 5px;
+      margin-left: 0.5rem;
       font-size: fonts.$sm;
       border-radius: 3px;
       background-color: colors.$color-primary;

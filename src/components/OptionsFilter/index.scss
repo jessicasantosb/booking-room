@@ -1,14 +1,15 @@
- @use '../../../styles/colors.scss'as colors;
+ @use '../../styles/colors.scss'as colors;
 
- .tableSelect {
+ .optionsFilter {
    display: flex;
    gap: 0.5rem;
-   
+
    &__options {
      padding: 0.25rem;
      border-radius: 3px;
      background-color: colors.$color-shade50;
      outline-color: colors.$color-primary;
      border-color: colors.$color-secondary;
+     text-transform: capitalize;
    }
  }

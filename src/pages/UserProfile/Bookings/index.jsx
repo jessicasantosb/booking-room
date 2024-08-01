@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import TableSelect from '../../../components/OptionsFilter';
 import ProfileBookings from '../../../components/UserProfile/ProfileBookings';
 import Error from '../../../components/interfaces/Error';
 import Loading from '../../../components/interfaces/Loading';
@@ -21,9 +22,13 @@ export default function Bookings() {
     <div className='bookings'>
       <h2 className='bookings__title'>Olá, {user?.name}!</h2>
       <div className='bookings__subtitle'>
-        <h3>Suas reservas</h3>
-        <p className='bookings__subtitle--count'>{userBookings.length}</p>
+        <div className='bookings__subtitle'>
+          <h3>Suas reservas</h3>
+          <p className='bookings__subtitle--count'>{userBookings.length}</p>
+        </div>
+        <TableSelect id='userbookings' options={['cancelado', 'reservado']} />
       </div>
+
       {error ? (
         <Error error='Algo deu errado. Tente novamente mais tarde, por favor!' />
       ) : (
@@ -38,7 +43,7 @@ export default function Bookings() {
               todate,
               totalamount,
               totaldays,
-              status,              
+              status,
             }) => {
               return (
                 <ProfileBookings

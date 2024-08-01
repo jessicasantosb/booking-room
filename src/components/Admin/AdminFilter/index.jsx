@@ -1,6 +1,6 @@
 import TableInput from '../TableInput';
 import TableOrdering from '../TableOrdering';
-import TableSelect from '../TableSelect';
+import OptionsFilter from '../../OptionsFilter';
 import './index.scss';
 
 export default function AdminFilter({id, label, options}) {
@@ -10,7 +10,7 @@ export default function AdminFilter({id, label, options}) {
 
       <div className='adminFilter__sort'>
         <p>Ordenar</p>
-        <TableSelect id={id} options={options} />
+        <OptionsFilter id={id} options={options} />
 
         <TableOrdering id={id} />
       </div>
