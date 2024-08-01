@@ -63,6 +63,19 @@ export function AdminProvider({ children }) {
     }
   };
 
+  const getAdminAccess = async (userid) => {
+    try {
+      setLoading(true)
+      const response = await axios.put(`/api/admin/${userid}`)
+      localStorage.setItem('currentUser', JSON.stringify(response.data));
+      location.reload();
+      setLoading(false)
+    } catch (error) {
+      setError(true)
+      setLoading(false)
+    }
+  }
+
   return (
     <AdminContext.Provider
       value={{
@@ -70,6 +83,7 @@ export function AdminProvider({ children }) {
         getAllRooms,
         getAllUsers,
         createRoom,
+        getAdminAccess,
         allBookings,
         allRooms,
         allUsers,
