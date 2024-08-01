@@ -7,10 +7,11 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    background-color: colors.$color-secondary;
-    color: colors.$color-shade50;
+    padding: 1rem;
+    background-color: colors.$color-primary-container;
 
-    &--title {
+    &--title,
+    &--icon {
       color: colors.$color-positive;
     }
 

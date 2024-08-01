@@ -40,8 +40,9 @@
     font-size: 1rem;
 
     &--link {
-      padding: 0.25rem;
+      padding: 0.5rem;
       color: colors.$color-shade50;
+      box-shadow: 1px 1px colors.$color-primary;
       background-color: colors.$color-secondary;
       border-radius: 4px;
 

@@ -1,5 +1,7 @@
 import dayjs from 'dayjs';
 import { useContext, useEffect, useState } from 'react';
+import { CiCreditCard1 } from 'react-icons/ci';
+import { IoIosCopy } from 'react-icons/io';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 
@@ -13,6 +15,8 @@ import './index.scss';
 
 export default function Booking() {
   const [success, setSuccess] = useState(false);
+  const [showCard, setShowCard] = useState(false);
+  const [copied, setCopied] = useState(false);
   const { getRoom, bookRoom, error, loading, room } = useContext(RoomContext);
   const { user } = useContext(UserContext);
   const { roomid, fromDate, toDate } = useParams();
@@ -46,6 +50,15 @@ export default function Booking() {
     if (event.target === event.currentTarget) navigate('/profile/bookings');
   };
 
+  const handleCopyNumber = () => {
+    const copy = navigator.clipboard.writeText('4242424242424242');
+
+    if (copy) setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+
   useEffect(() => {
     getRoom(roomid);
   }, []);
@@ -54,9 +67,9 @@ export default function Booking() {
 
   return (
     <section className='container'>
-      <Link to={'/'} className='link'>
-        voltar para todos os quartos
-      </Link>
+      <div className='booking--link'>
+        <Link to={'/'}>Voltar para todos os quartos</Link>
+      </div>
 
       {success && (
         <BookingSuccess
@@ -72,7 +85,7 @@ export default function Booking() {
           <div>
             <h2>{room.name}</h2>
             <div className='booking__images'>
-              <img src={room.imageurls && room.imageurls[0]} alt={room.name} />;
+              <img src={room.imageurls && room.imageurls[0]} alt={room.name} />
             </div>
           </div>
 
@@ -89,7 +102,7 @@ export default function Booking() {
                 Até o dia: <span>{toDate}</span>
               </p>
               <p>
-                Máximo de lugares: <span>{room.maxcount}</span>
+                Capacidade máxima: <span>{room.maxcount}</span>
               </p>
 
               <h3 className='booking__subtitle'>Total</h3>
@@ -119,7 +132,7 @@ export default function Booking() {
             <StripeCheckout
               name='BookingRoom.com'
               description='alugue seu quarto'
-              image='https://www.vidhub.co/assets/logos/vidhub-icon-2e5c629f64ced5598a56387d4e3d0c7c.png'
+              image='https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
               panelLabel='Pague'
               amount={totalAmount * 100}
               currency='BRL'
@@ -128,6 +141,32 @@ export default function Booking() {
             >
               <Button text='Pagar agora' type='button' />
             </StripeCheckout>
+
+            <div
+              className='booking__card'
+              style={{ bottom: showCard ? '0' : '-145px' }}
+            >
+              <button
+                className='booking__card--button'
+                onClick={() => setShowCard(!showCard)}
+              >
+                <CiCreditCard1 size={24} />
+              </button>
+              <div>
+                <p>Número do cartão: </p>
+                <p className='booking__card--number' onClick={handleCopyNumber}>
+                  4242 4242 4242 4242 <IoIosCopy size={12} />
+                </p>
+                <div
+                  className='booking__card--popup'
+                  style={{ display: copied ? 'block' : 'none' }}
+                >
+                  copiado!
+                </div>
+              </div>
+              <p>Data de vencimento no futuro</p>
+              <p>Código de segurança aleatório</p>
+            </div>
           </div>
         </main>
       )}

@@ -2,17 +2,33 @@
 
 .createRoom {
   &__form {
+    &--row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    &--select,
     &--description {
-      width: 100%;
-      margin-top: 1.5rem;
-      padding: 0.25rem;
       outline: 0;
+      background-color: colors.$color-shade50;
       border-radius: 5px;
       border: 1px solid colors.$color-text;
 
       &:focus {
         border-color: colors.$color-primary;
       }
+    }
+
+    &--select {
+      height: 40px;
+      margin-top: 1rem;
+    }
+
+    &--description {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 0.25rem;
     }
   }
 }

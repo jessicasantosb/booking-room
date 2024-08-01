@@ -49,11 +49,11 @@ export default function HomeRooms({ room, fromDate, toDate }) {
               to={`booking/${room._id}/${fromDate}/${toDate}`}
               className='card__links--link'
             >
-              Book room
+              Reservar
             </Link>
           )}
           <button className='card__links--button' onClick={handleModal}>
-            View details <IoInformationCircleOutline size={18} />
+            Ver detalhes <IoInformationCircleOutline size={18} />
           </button>
         </div>
       </div>

@@ -69,7 +69,7 @@ export default function Home() {
   };
 
   const handleFilterByType = (searchType) => {
-    if (searchType !== 'All') {
+    if (searchType !== 'Todos') {
       const temprooms = duplicateRooms.filter(
         (room) => room.type.toLowerCase() === searchType.toLowerCase()
       );

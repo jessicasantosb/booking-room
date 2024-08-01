@@ -21,10 +21,10 @@ export default function HomeHeader({
         onChange={(e) => handleFilterByType(e.target.value)}
         className='homeheader__search homeheader__search--type'
       >
-        <option value="All">Todos</option>
-        <option value='Single'>Solteiro</option>
-        <option value='Suite'>Suíte</option>
-        <option value='Standard'>Padrão</option>
+        <option value="Todos">Todos</option>
+        <option value='Padrão'>Padrão</option>
+        <option value='Suíte'>Suíte</option>
+        <option value='Individual'>Individual</option>
       </select>
       <input
         className='homeheader__search homeheader__search--name'

@@ -12,7 +12,7 @@ export default function CreateRoom() {
   const [rentPerDay, setRentPerDay] = useState('');
   const [maxCount, setMaxCount] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [type, setType] = useState('');
+  const [type, setType] = useState('Padrão');
   const [imageurl1, setImageurl1] = useState('');
   const [imageurl2, setImageurl2] = useState('');
   const [imageurl3, setImageurl3] = useState('');
@@ -63,26 +63,29 @@ export default function CreateRoom() {
           value={rentPerDay}
           onChange={(e) => setRentPerDay(e.target.value)}
         />
-        <Input
-          placeholder='Quantidade de pessoas'
-          type='number'
-          name={maxCount}
-          value={maxCount}
-          onChange={(e) => setMaxCount(e.target.value)}
-        />
+        <div className='createRoom__form--row'>
+          <Input
+            placeholder='Quantidade de pessoas'
+            type='number'
+            name={maxCount}
+            value={maxCount}
+            onChange={(e) => setMaxCount(e.target.value)}
+          />
+          <select
+            className='createRoom__form--select'
+            onChange={(e) => setType(e.target.value)}
+          >
+            <option value='Padrão'>Padrão</option>
+            <option value='Suíte'>Suíte</option>
+            <option value='Individual'>Individual</option>
+          </select>
+        </div>
         <Input
           placeholder='Número para contato'
           type='number'
           name={phoneNumber}
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
-        />
-        <Input
-          placeholder='Tipo'
-          type='text'
-          name={type}
-          value={type}
-          onChange={(e) => setType(e.target.value)}
         />
         <Input
           placeholder='Url da imagem'

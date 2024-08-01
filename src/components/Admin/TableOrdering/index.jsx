@@ -72,7 +72,7 @@ export default function TableOrdering({ id }) {
       <select onChange={handleFilter} className='tableOrdering__options'>
         <option disabled>Ordenar</option>
         <option value='default'>
-          {id === 'bookings' && 'Por Data de Reserva'}
+          {id === 'bookings' && 'Por Data da Reserva'}
           {id === 'rooms' && 'Pela Data de Criação'}
         </option>
         <option value='crescente'>

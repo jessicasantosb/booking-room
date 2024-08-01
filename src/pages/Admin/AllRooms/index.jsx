@@ -21,7 +21,7 @@ export default function AllRooms() {
       <AdminFilter
         id='rooms'
         label='Pesquise pelo ID ou nome do quarto'
-        options={['Standard', 'Suite', 'Single']}
+        options={['Padrão', 'Suíte', 'Individual']}
       />
 
       {error && <Error error='Erro ao carregar os dados.' />}

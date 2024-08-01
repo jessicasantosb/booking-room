@@ -22,7 +22,7 @@ export default function AllBookings() {
       <AdminFilter
         id='bookings'
         label='Pesquise pelo ID do usuário, ID da reserva ou nome do quarto'
-        options={['reservado', 'cancelado']}
+        options={['Reservado', 'Cancelado']}
       />
 
       {error && <Error error='Erro ao carregar os dados.' />}

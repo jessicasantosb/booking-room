@@ -53,7 +53,7 @@ export default function TableSelect({ id, label, options }) {
     <div className='tableSelect'>
       <p>{label}</p>
       <select onChange={handleFilter} className='tableSelect__options'>
-        <option value='todos'>todos</option>
+        <option value='todos'>Todos</option>
         {options.map((option, index) => {
           return (
             <option key={index} value={option}>
