@@ -32,6 +32,7 @@ export default function Input({ type, placeholder, name, value, onChange, error 
             className='input__icon'
             type='button'
             onClick={handleHideText}
+            tabIndex='-1'
           >
             {slashEye ? <FaRegEye /> : <FaRegEyeSlash />}
           </button>

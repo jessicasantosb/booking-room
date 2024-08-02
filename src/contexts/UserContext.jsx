@@ -1,4 +1,5 @@
 import axios from 'axios';
+import googleOneTap from 'google-one-tap';
 import { createContext, useCallback, useEffect, useState } from 'react';
 
 export const UserContext = createContext();
@@ -8,10 +9,27 @@ export function UserProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
 
+  const options = {
+    client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+    auto_select: false,
+    cancel_on_tap_outside: false,
+    context: 'signin',
+  };
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('currentUser'));
-    if (user) {
-      setUser(user);
+
+    if (user) setUser(user);
+
+    if (!user) {
+      googleOneTap(options, async (response) => {
+        const token = {
+          token: response.credential,
+        };
+        const res = await axios.post('/api/users/google-login', token);
+        localStorage.setItem('currentUser', JSON.stringify(res.data));
+        location.href = '/';
+      });
     }
   }, []);
 
