@@ -10,19 +10,19 @@ import useForm from '../../hooks/useForm';
 import './index.scss';
 
 export default function Login() {
-  const email = useForm('email');
-  const password = useForm();
+  const emailProps = useForm('email');
+  const passwordProps = useForm();
 
   const { userLogin, error, loading } = useContext(UserContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (email.validate() && password.validate()) {
-      const emailValue = email.value;
-      const passwordValue = password.value;
+    if (emailProps.validate() && passwordProps.validate()) {
+      const email = emailProps.value;
+      const password = passwordProps.value;
 
-      const user = { emailValue, passwordValue };
+      const user = { email, password };
 
       userLogin(user);
     }
@@ -35,12 +35,12 @@ export default function Login() {
         <h1 className='login__title'>Faça login</h1>
 
         <form onSubmit={handleLogin}>
-          <Input placeholder='E-mail' type='email' name='email' {...email} />
+          <Input placeholder='E-mail' type='email' name='email' {...emailProps} />
           <Input
             placeholder='Senha'
             type='password'
             name='password'
-            {...password}
+            {...passwordProps}
           />
 
           <Button text='entrar' type='submit' loading={loading} />
