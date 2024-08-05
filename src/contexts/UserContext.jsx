@@ -9,14 +9,14 @@ export function UserProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
 
-  const options = {
-    client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-    auto_select: false,
-    cancel_on_tap_outside: false,
-    context: 'signin',
-  };
-
   useEffect(() => {
+    const options = {
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      auto_select: false,
+      cancel_on_tap_outside: false,
+      context: 'signin',
+    };
+
     const user = JSON.parse(localStorage.getItem('currentUser'));
 
     if (user) setUser(user);
@@ -51,7 +51,10 @@ export function UserProvider({ children }) {
   const userLogin = async (user) => {
     try {
       setLoading(true);
-      const response = await axios.post('/api/users/login', user);
+      const response = await axios.post(
+        'https://booking-room-backend.vercel.app/api/users/login',
+        user
+      );
       if (response.data) {
         setLoading(false);
         localStorage.setItem('currentUser', JSON.stringify(response.data));
