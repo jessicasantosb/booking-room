@@ -16,7 +16,7 @@ export function AdminProvider({ children }) {
   const getAllBookings = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/admin/bookings');
+      const response = await axios.get(`${import.meta.env.VITE_URL}/admin/bookings`);
       setAllBookings(response.data);
       setDuplicateBookings(response.data);
       setLoading(false);
@@ -29,7 +29,7 @@ export function AdminProvider({ children }) {
   const getAllRooms = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/admin/rooms');
+      const response = await axios.get(`${import.meta.env.VITE_URL}/admin/rooms`);
       setAllRooms(response.data);
       setDuplicateRooms(response.data);
       setLoading(false);
@@ -42,7 +42,7 @@ export function AdminProvider({ children }) {
   const getAllUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/admin/users');
+      const response = await axios.get(`${import.meta.env.VITE_URL}/admin/users`);
       setAllUsers(response.data);
       setDuplicateUsers(response.data);
       setLoading(false);
@@ -55,7 +55,7 @@ export function AdminProvider({ children }) {
   const createRoom = async (newroom) => {
     try {
       setLoading(true);
-      await axios.post('/api/admin/room', newroom);
+      await axios.post(`${import.meta.env.VITE_URL}/admin/room`, newroom);
       setLoading(false);
     } catch (error) {
       setError(true);
@@ -65,16 +65,18 @@ export function AdminProvider({ children }) {
 
   const getAdminAccess = async (userid) => {
     try {
-      setLoading(true)
-      const response = await axios.put(`/api/admin/${userid}`)
+      setLoading(true);
+      const response = await axios.put(
+        `${import.meta.env.VITE_URL}/admin/${userid}`
+      );
       localStorage.setItem('currentUser', JSON.stringify(response.data));
       location.reload();
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
-      setError(true)
-      setLoading(false)
+      setError(true);
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <AdminContext.Provider

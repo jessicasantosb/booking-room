@@ -15,7 +15,9 @@ export function RoomProvider({ children }) {
   const getAllRooms = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/rooms');
+      const response = await axios.get(
+        `${import.meta.env.VITE_URL}/rooms`
+      );
       setRooms(response.data);
       setDuplicateRooms(response.data);
       setLoading(false);
@@ -28,7 +30,9 @@ export function RoomProvider({ children }) {
   const getRoom = async (roomid) => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/rooms/${roomid}`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_URL}/rooms/${roomid}`
+      );
       setRoom(response.data);
       setLoading(false);
     } catch (error) {
@@ -60,7 +64,7 @@ export function RoomProvider({ children }) {
 
     try {
       setLoading(true);
-      await axios.post('/api/books', bookingData);
+      await axios.post(`${import.meta.env.VITE_URL}/books`, bookingData);
       setLoading(false);
     } catch (error) {
       setError(true);
@@ -71,7 +75,9 @@ export function RoomProvider({ children }) {
   const getUserBookings = async (userid) => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/books/${userid}`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_URL}/books/${userid}`
+      );
       setUserBookings(response.data);
       setDuplicatedUserBookings(response.data);
       setLoading(false);
@@ -84,7 +90,7 @@ export function RoomProvider({ children }) {
   const cancelBooking = async (bookingid, roomid) => {
     try {
       setLoading(true);
-      await axios.put(`/api/books/${roomid}/${bookingid}`);
+      await axios.put(`${import.meta.env.VITE_URL}/books/${roomid}/${bookingid}`);
       setLoading(false);
       location.reload();
     } catch (error) {
