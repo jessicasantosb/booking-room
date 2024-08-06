@@ -16,7 +16,6 @@ export default function TableFilter({ id, label }) {
     const query = e.target.value.toLowerCase();
 
     const checkQuery = (value) => {
-      console.log(value);
       return value.toLowerCase().includes(query);
     };
 
