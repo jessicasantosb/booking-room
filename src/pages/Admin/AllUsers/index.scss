@@ -1,9 +1,0 @@
-@use '../../../styles/colors.scss'as colors;
-
-.allusers {
-
-  &__tableHeader,
-  &__tableContent {
-    grid-template-columns: 150px 300px 200px 400px 200px;
-  }
-}

@@ -1,9 +1,0 @@
-@use '../../../styles/colors.scss'as colors;
-
-.allbookings {
-
-  &__tableHeader,
-  &__tableContent {
-    grid-template-columns: 150px 270px 270px 150px 150px 150px 110px;
-  }
-}

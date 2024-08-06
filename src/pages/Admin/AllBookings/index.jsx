@@ -3,7 +3,7 @@ import AdminFilter from '../../../components/Admin/AdminFilter';
 import Error from '../../../components/interfaces/Error';
 import Loading from '../../../components/interfaces/Loading';
 import { AdminContext } from '../../../contexts/AdminContext';
-import './index.scss';
+import Table from '../../../components/Admin/Table';
 
 export default function AllBookings() {
   const { getAllBookings, allBookings, error, loading } =
@@ -26,35 +26,19 @@ export default function AllBookings() {
       />
 
       {error && <Error error='Erro ao carregar os dados.' />}
-      <div className='table'>
-        <div className='table__header allbookings__tableHeader'>
-          <p>Data da Reserva</p>
-          <p>ID da Reserva</p>
-          <p>ID do Usuário</p>
-          <p>Nome do quarto</p>
-          <p>Check in </p>
-          <p>Check out</p>
-          <p>Status</p>
-        </div>
-        {allBookings.map(
-          ({ _id, createdAt, userid, room, fromdate, todate, status }) => {
-            return (
-              <div
-                key={_id}
-                className='table__content allbookings__tableContent'
-              >
-                <p>{new Date(createdAt).toLocaleDateString("pt-BR")}</p>
-                <p>{_id}</p>
-                <p>{userid}</p>
-                <p>{room}</p>
-                <p>{fromdate}</p>
-                <p>{todate}</p>
-                <p>{status}</p>
-              </div>
-            );
-          }
-        )}
-      </div>
+      <Table
+        id='bookings'
+        array={allBookings}
+        headerNames={[
+          'Data da Reserva',
+          'ID da Reserva',
+          'ID do Usuário',
+          'Nome do quarto',
+          'Check in',
+          'Check out',
+          'Status',
+        ]}
+      />
     </section>
   );
 }
