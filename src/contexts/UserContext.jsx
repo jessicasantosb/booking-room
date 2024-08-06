@@ -26,10 +26,7 @@ export function UserProvider({ children }) {
         const token = {
           token: response.credential,
         };
-        const res = await axios.post(
-          `${import.meta.env.VITE_URL}/users/google-login`,
-          token
-        );
+        const res = await axios.post('/api/users/google-login', token);
         localStorage.setItem('currentUser', JSON.stringify(res.data));
         location.href = '/';
       });
@@ -39,10 +36,7 @@ export function UserProvider({ children }) {
   const userRegister = async (user) => {
     try {
       setLoading(true);
-      const response = await axios.post(
-        `${import.meta.env.VITE_URL}/users/register`,
-        user
-      );
+      const response = await axios.post('/api/users/register', user);
 
       if (response.data) {
         location.href = '/login';
@@ -57,10 +51,7 @@ export function UserProvider({ children }) {
   const userLogin = async (user) => {
     try {
       setLoading(true);
-      const response = await axios.post(
-        `${import.meta.env.VITE_URL}/users/login`,
-        user
-      );
+      const response = await axios.post('/api/users/login', user);
       if (response.data) {
         setLoading(false);
         localStorage.setItem('currentUser', JSON.stringify(response.data));
