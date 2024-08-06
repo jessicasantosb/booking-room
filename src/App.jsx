@@ -1,7 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.scss';
 import { AdminProvider } from './contexts/AdminContext';
-// import { AuthProvider } from './contexts/AuthContext';
 import { RoomProvider } from './contexts/RoomContext';
 import { UserProvider } from './contexts/UserContext';
 import AdminRoutes from './routes/AdminRoutes';
@@ -102,7 +101,6 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    // <AuthProvider>
     <AdminProvider>
       <UserProvider>
         <RoomProvider>
@@ -110,7 +108,6 @@ function App() {
         </RoomProvider>
       </UserProvider>
     </AdminProvider>
-    // </AuthProvider>
   );
 }
 
