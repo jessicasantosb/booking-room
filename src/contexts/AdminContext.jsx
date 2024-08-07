@@ -63,6 +63,18 @@ export function AdminProvider({ children }) {
     }
   };
 
+  const deleteRoom = async (roomid) => {
+    try {
+      setLoading(true);
+      await axios.delete(`/api/admin/${roomid}`);
+      location.reload();
+      setLoading(false);
+    } catch (error) {
+      setError(true);
+      setLoading(false);
+    }
+  };
+
   const getAdminAccess = async (userid) => {
     try {
       setLoading(true);
@@ -83,6 +95,7 @@ export function AdminProvider({ children }) {
         getAllRooms,
         getAllUsers,
         createRoom,
+        deleteRoom,
         getAdminAccess,
         allBookings,
         allRooms,

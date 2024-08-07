@@ -1,6 +1,6 @@
 import './index.scss';
 
-export default function Table({ id, array, headerNames }) {
+export default function Table({ id, array, headerNames, handleDelete }) {
   return (
     <div className='tableWrapper'>
       <table className='table'>
@@ -9,6 +9,7 @@ export default function Table({ id, array, headerNames }) {
             {headerNames.map((name, index) => {
               return <th key={index}>{name}</th>;
             })}
+            {id === 'rooms' && <th>Deletar</th>}
           </tr>
         </thead>
 
@@ -40,6 +41,14 @@ export default function Table({ id, array, headerNames }) {
                     </td>
                     <td>{item.maxcount}</td>
                     <td>{item.phonenumber}</td>
+                    <td>
+                      <button
+                        className='table__button'
+                        onClick={() => handleDelete(item._id)}
+                      >
+                        Excluir
+                      </button>
+                    </td>
                   </>
                 )}
                 {id === 'users' && (

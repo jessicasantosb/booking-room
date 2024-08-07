@@ -27,5 +27,20 @@
       padding: 0.5rem;
       border: 1px solid colors.$color-text;
     }
+    
+    &__button {
+      display: block;
+      margin-inline: auto;
+      padding: 0.25rem;
+      border: 0;
+      color: colors.$color-critical;
+      background-color: colors.$color-critical-container;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(0.98);
+        opacity: 0.8;
+      }
+    }
   }
 }

@@ -6,7 +6,12 @@ import { AdminContext } from '../../../contexts/AdminContext';
 import Table from '../../../components/Admin/Table';
 
 export default function AllRooms() {
-  const { getAllRooms, allRooms, error, loading } = useContext(AdminContext);
+  const { getAllRooms, deleteRoom, allRooms, error, loading } =
+    useContext(AdminContext);
+
+  const handleDeleteRoom = (roomid) => {    
+    deleteRoom(roomid);
+  };
 
   useEffect(() => {
     getAllRooms();
@@ -37,6 +42,7 @@ export default function AllRooms() {
           'Máx. de Pessoas',
           'Contato',
         ]}
+        handleDelete={handleDeleteRoom}
       />
     </section>
   );
