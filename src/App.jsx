@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import './App.scss';
 import { AdminProvider } from './contexts/AdminContext';
 import { RoomProvider } from './contexts/RoomContext';
@@ -101,13 +102,15 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <AdminProvider>
-      <UserProvider>
-        <RoomProvider>
-          <RouterProvider router={router} />
-        </RoomProvider>
-      </UserProvider>
-    </AdminProvider>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <AdminProvider>
+        <UserProvider>
+          <RoomProvider>
+            <RouterProvider router={router} />
+          </RoomProvider>
+        </UserProvider>
+      </AdminProvider>
+    </GoogleOAuthProvider>
   );
 }
 

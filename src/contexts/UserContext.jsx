@@ -1,3 +1,4 @@
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import googleOneTap from 'google-one-tap';
 import { createContext, useCallback, useEffect, useState } from 'react';
@@ -8,8 +9,11 @@ export function UserProvider({ children }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const [googleUser, setGoogleUser] = useState([]);
 
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+
     const options = {
       client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
       auto_select: false,
@@ -17,9 +21,24 @@ export function UserProvider({ children }) {
       context: 'signin',
     };
 
-    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const googleLogin = async () => {
+      try {
+        const response = await axios.get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${googleUser.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${googleUser.access_token}`,
+              Accept: 'application/json',
+            },
+          }
+        );
 
-    if (user) setUser(user);
+        localStorage.setItem('currentUser', JSON.stringify(response.data));
+        location.href = '/';
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
     if (!user) {
       googleOneTap(options, async (response) => {
@@ -31,7 +50,10 @@ export function UserProvider({ children }) {
         location.href = '/';
       });
     }
-  }, []);
+
+    if (user) setUser(user);
+    if (googleUser) googleLogin();
+  }, [googleUser]);
 
   const userRegister = async (user) => {
     try {
@@ -64,10 +86,18 @@ export function UserProvider({ children }) {
     }
   };
 
+  const userGoogleLogin = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      setGoogleUser(codeResponse);
+    },
+    onError: (error) => console.error('Login Failed:', error),
+  });
+
   const userLogout = useCallback(async () => {
     setUser(null);
     setError(null);
     setLoading(false);
+    googleLogout();
     localStorage.removeItem('currentUser');
     location.href = '/login';
   }, []);
@@ -77,6 +107,7 @@ export function UserProvider({ children }) {
       value={{
         userLogin,
         userRegister,
+        userGoogleLogin,
         userLogout,
         error,
         loading,
