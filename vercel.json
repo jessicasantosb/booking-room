@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://booking-room-backend.vercel.app/:path*"
+      "destination": "https://booking-room-api-99ca.onrender.com/:path*"
     },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
