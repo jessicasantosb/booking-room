@@ -1,5 +1,6 @@
 import { DatePicker } from 'antd';
 import './index.scss';
+import SearchByName from '../../filters/SearchByName';
 
 const { RangePicker } = DatePicker;
 
@@ -21,18 +22,16 @@ export default function HomeHeader({
         onChange={(e) => handleFilterByType(e.target.value)}
         className='homeheader__search homeheader__search--type'
       >
-        <option value="Todos">Todos</option>
+        <option value='Todos'>Todos</option>
         <option value='Padrão'>Padrão</option>
         <option value='Suíte'>Suíte</option>
         <option value='Individual'>Individual</option>
       </select>
-      <input
-        className='homeheader__search homeheader__search--name'
-        type='text'
-        placeholder='pesquise seu quarto'
-        value={searchKey}
-        onChange={(e) => setSearchKey(e.target.value)}
-        onKeyUp={handleFilterByName}
+
+      <SearchByName
+        searchKey={searchKey}
+        handleChange={(e) => setSearchKey(e.target.value)}
+        handleFilterByName={handleFilterByName}
       />
     </div>
   );
