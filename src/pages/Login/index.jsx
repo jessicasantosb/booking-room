@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../components/Button';
+import Button from '../../components/ui/Button';
 import GoogleLogin from '../../components/GoogleLogin';
-import Input from '../../components/Input';
+import Input from '../../components/ui/Input';
 import TermsFooter from '../../components/TermsFooter';
 import Error from '../../components/interfaces/Error';
 import { UserContext } from '../../contexts/UserContext';

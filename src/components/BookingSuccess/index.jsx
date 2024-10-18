@@ -1,7 +1,7 @@
 import { CiCircleCheck } from 'react-icons/ci';
 import { IoClose } from 'react-icons/io5';
 
-import Button from '../Button';
+import Button from '../ui/Button';
 import './index.scss';
 export default function BookingSuccess({
   handleModalOutsideClick,
