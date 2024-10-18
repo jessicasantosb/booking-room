@@ -7,7 +7,7 @@ export default function SearchByName({
 }) {
   return (
     <input
-      className='homeheader__search homeheader__search--name'
+      className='searchByName'
       type='text'
       placeholder='pesquise seu quarto'
       value={searchKey}
