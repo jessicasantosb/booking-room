@@ -16,12 +16,13 @@
     border-radius: 5px;
     outline: none;
 
+    &--name {
+      padding: 0.25rem;
+    }
+
     &:focus {
       border-color: colors.$color-primary;
     }
 
-    &--name {
-      padding: 0.25rem;
-    }
   }
 }

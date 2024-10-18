@@ -1,13 +1,12 @@
-import './index.scss';
-
 export default function SearchByName({
   searchKey,
   handleChange,
   handleFilterByName,
+  className,
 }) {
   return (
     <input
-      className='searchByName'
+      className={className}
       type='text'
       placeholder='pesquise seu quarto'
       value={searchKey}
