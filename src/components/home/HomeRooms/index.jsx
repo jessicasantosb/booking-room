@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { IoInformationCircleOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import HomeModal from '../HomeModal';
-import Image from '../interfaces/Images';
+import Image from '../../interfaces/Images';
 import './index.scss';
 export default function HomeRooms({ room, fromDate, toDate }) {
   const [modal, setModal] = useState(false);

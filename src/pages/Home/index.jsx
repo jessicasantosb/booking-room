@@ -2,8 +2,8 @@ import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import { useContext, useEffect, useState } from 'react';
 
-import HomeHeader from '../../components/HomeHeader';
-import HomeRooms from '../../components/HomeRooms';
+import HomeHeader from '../../components/home/HomeHeader';
+import HomeRooms from '../../components/home/HomeRooms';
 import Error from '../../components/interfaces/Error';
 import Loading from '../../components/interfaces/Loading';
 
