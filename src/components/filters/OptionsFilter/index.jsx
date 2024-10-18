@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { AdminContext } from '../../contexts/AdminContext';
-import { RoomContext } from '../../contexts/RoomContext';
-import { UserContext } from '../../contexts/UserContext';
+import { AdminContext } from '../../../contexts/AdminContext';
+import { RoomContext } from '../../../contexts/RoomContext';
+import { UserContext } from '../../../contexts/UserContext';
 import './index.scss';
 
 export default function OptionsFilter({ id, options }) {

@@ -1,6 +1,6 @@
 import TableInput from '../TableInput';
 import TableOrdering from '../TableOrdering';
-import OptionsFilter from '../../OptionsFilter';
+import OptionsFilter from '../../filters/OptionsFilter';
 import './index.scss';
 
 export default function AdminFilter({id, label, options}) {

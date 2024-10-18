@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import TableSelect from '../../../components/OptionsFilter';
+import TableSelect from '../../../components/filters/OptionsFilter';
 import ProfileBookings from '../../../components/UserProfile/ProfileBookings';
 import Error from '../../../components/interfaces/Error';
 import Loading from '../../../components/interfaces/Loading';
