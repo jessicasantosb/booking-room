@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { AdminContext } from '../../../contexts/AdminContext';
 import './index.scss';
 
@@ -12,11 +13,21 @@ export default function TableFilter({ id, label }) {
     duplicateUsers,
   } = useContext(AdminContext);
 
-  const handleFilter = (e) => {
-    const query = e.target.value.toLowerCase();
+  const [_, setSearchParams] = useSearchParams();
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const handleFilter = ({ target }) => {
+    const query = target.value;
+
+    setSearchParams({ q: query });
+
+    if (query === '') {
+      navigate(location.pathname);    
+    }
 
     const checkQuery = (value) => {
-      return value.toLowerCase().includes(query);
+      return value.toLowerCase().includes(query.toLowerCase());
     };
 
     const bookingsFilter = (result) => {

@@ -1,6 +1,11 @@
+import { useSearchParams } from 'react-router-dom';
+import Highlight from '../../interfaces/Highlight';
 import './index.scss';
 
 export default function Table({ id, array, headerNames, handleDelete }) {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('q') || '';
+
   return (
     <div className='tableWrapper'>
       <table className='table'>
@@ -18,20 +23,29 @@ export default function Table({ id, array, headerNames, handleDelete }) {
             <tbody key={item._id}>
               <tr className='table__content'>
                 <td>{new Date(item.createdAt).toLocaleDateString('pt-BR')}</td>
-                <td>{item._id}</td>
+                <td>
+                  <Highlight toHighlight={query}>{item._id}</Highlight>
+                </td>
 
                 {id === 'bookings' && (
                   <>
-                    <td>{item.userid}</td>
-                    <td>{item.room}</td>
+                    <td>
+                      <Highlight toHighlight={query}>{item.userid}</Highlight>
+                    </td>
+                    <td>
+                      <Highlight toHighlight={query}>{item.room}</Highlight>
+                    </td>
                     <td>{item.fromdate}</td>
                     <td>{item.todate}</td>
                     <td>{item.status}</td>
                   </>
                 )}
+
                 {id === 'rooms' && (
                   <>
-                    <td>{item.name}</td>
+                    <td>
+                      <Highlight toHighlight={query}>{item.name}</Highlight>
+                    </td>
                     <td>{item.type}</td>
                     <td>
                       {item.rentproperty.toLocaleString('pt-BR', {
@@ -51,10 +65,15 @@ export default function Table({ id, array, headerNames, handleDelete }) {
                     </td>
                   </>
                 )}
+
                 {id === 'users' && (
                   <>
-                    <td>{item.name}</td>
-                    <td>{item.email}</td>
+                    <td>
+                      <Highlight toHighlight={query}>{item.name}</Highlight>
+                    </td>
+                    <td>
+                      <Highlight toHighlight={query}>{item.email}</Highlight>
+                    </td>
                     <td>{item.isAdmin ? 'Sim' : 'Não'}</td>
                   </>
                 )}
