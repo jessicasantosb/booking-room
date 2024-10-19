@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { IoInformationCircleOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
-import Highlight from '../../interfaces/Highlight';
 import Image from '../../interfaces/Images';
 import HomeModal from '../HomeModal';
 import './index.scss';
-export default function HomeRooms({ room, fromDate, toDate, searchKey }) {
+export default function HomeRooms({ room, fromDate, toDate }) {
   const [modal, setModal] = useState(false);
 
   const handleModal = () => {
@@ -26,9 +25,7 @@ export default function HomeRooms({ room, fromDate, toDate, searchKey }) {
         <Image src={room.imageurls[0]} alt={room.name} />
         <p className='card__type'>{room.type}</p>
 
-        <h3 className='card__name'>
-          <Highlight toHighlight={searchKey}>{room.name}</Highlight>
-        </h3>
+        <h3 className='card__name'>{room.name}</h3>
 
         <p className='card__maxcount'>
           Capacidade máxima:{' '}

@@ -125,7 +125,6 @@ export default function Home() {
                 room={room}
                 fromDate={fromDate}
                 toDate={toDate}
-                searchKey={searchKey}
               />
             );
           })}
